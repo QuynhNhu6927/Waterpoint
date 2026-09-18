@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="vi"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Tổng quan khu đô thị | Waterpoint | ERA Vietnam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKEN - design system Waterpoint VR360
+
+   🔴 BA NGOAI LE Anh Tony CHOT ngay 10/09/2026 - co y pha luat:
+     1. Them mau VANG DONG #E0B14A  -> pha LUAT 2 (bang mau dong)
+        Ly do: danh dau 2 phan khu ERA doc quyen (Aquaria, Park Village).
+     2. Nut GOC VUONG (radius 0)    -> pha LUAT 3 (moi phan tu tuong tac bo full)
+     3. Nut 3D nhieu lop bong       -> pha LUAT 5 (mot bac bong)
+        Ly do 2+3: co y khac biet voi ban goc cua CDT.
+   Ngoai 3 cai tren, moi thu khac VAN theo dung design system.
+   ============================================================ */
+:root{
+  --wp-primary:#003C4B; --wp-primary-hover:#006D88; --wp-primary-tint:#7FD3E3;
+  --wp-canvas:#000000; --wp-hairline:#005A70; --wp-on-primary:#FFFFFF;
+  --wp-text:#FFFFFF; --wp-text-soft:rgba(255,255,255,.9);
+  --wp-text-muted:rgba(255,255,255,.6); --wp-text-disabled:rgba(255,255,255,.3);
+  --wp-surface-360:#0A1214;
+  --wp-overlay-nav:rgba(0,60,75,.9); --wp-overlay-soft:rgba(0,60,75,.3);
+  --wp-font:Montserrat,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --wp-fw-thin:100; --wp-fw-regular:400; --wp-fw-bold:700;
+  --wp-fs-body:16px; --wp-fs-label:12px;
+  --wp-space-xxs:4px; --wp-space-xs:8px; --wp-space-sm:12px;
+  --wp-space-md:16px; --wp-space-lg:24px; --wp-space-xl:32px;
+  --wp-radius-none:0px; --wp-radius-full:9999px;
+  --wp-control-h:40px; --wp-control-h-lg:48px; --wp-nav-h:52px;
+  --wp-z-overlay:50; --wp-z-toast:999999999;
+
+  /* --- ngoai le 1: vang dong danh dau phan khu ERA doc quyen --- */
+  --wp-vang:#E0B14A;
+  --wp-vang-canh:#8E6C1C;          /* canh duoi khoi 3D mau vang */
+  --wp-vang-mo:rgba(224,177,74,.34);
+
+  /* --- ngoai le 2+3: khoi 3D goc vuong --- */
+  --wp-canh-teal:#00232C;          /* canh duoi khoi 3D mau teal */
+  --wp-canh-trang:#8FA3A9;         /* canh duoi khoi 3D mau trang */
+  --wp-3d-sang:rgba(255,255,255,.30);
+  --wp-3d-toi:rgba(0,0,0,.34);
+  --wp-3d-do:0 6px 12px rgba(0,0,0,.42);
+  --wp-trang-mo:rgba(255,255,255,.30);
+  /* Chieu ngang phai chua trong o mep PHAI cua dai chip. Trang nay chua co gi
+     dung ben phai o tam do nen = 0. Giu bien cho GIONG HET trang Thuc te:
+     mai mot gan them vat gi ben phai thi chi doi con so nay, khong phai sua
+     cong thuc (bai hoc 14/09: dung de hai trang lech kieu code). */
+  --ds-chua:0px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:var(--wp-canvas);
+  font-family:var(--wp-font);color:var(--wp-text);-webkit-tap-highlight-color:transparent}
+#pano{position:fixed;inset:0;background:var(--wp-surface-360)}
+button{font-family:var(--wp-font);cursor:pointer;border:0}
+
+/* ============ NUT PHANG — mau Anh Tony gui 12/09 ============
+   Doc ky anh mau, nut co 6 dac diem (ban truoc Em Teo chi lam duoc 1):
+     1. o icon nen TRANG ben trai, noi tren than, co bong rieng o mep phai
+     2. BO GOC MEM  (trai cua o trang · phai-TREN cua than)
+     3. VAT CHEO goc duoi-PHAI cua than
+     4. BONG DO MEM ca nut (flat shadow), KHONG phai bong khoi 3D
+     5. chu IN HOA, gian chu rong
+     6. icon NET MANH mau nen, khong phai khoi dac
+
+   🔴 Vat goc lam bang `linear-gradient(-45deg, transparent Npx, <nen> 0)`
+      => goc do TRONG SUOT THAT. Vi vay bong phai dung `filter:drop-shadow`,
+      KHONG dung `box-shadow` (box-shadow do theo hinh chu nhat nen se
+      lo mot goc vuong thua ra dung cho vua vat).
+   🔴 Doi mau nut phai doi bien `--nen`, KHONG duoc set `background:` truc tiep
+      - set thang la de mat gradient => mat luon goc vat.
+   ⚠️ Bo "goc vuong" ma Anh Tony chot 10/09; Anh chot lai kieu nay 12/09.
+   ============================================================ */
+.k3d{
+  /* ===== NUT THEO FILE Group.svg Anh Tony gui 12/09 - DO THANG TU PATH =====
+     path: M0,0 h2197 a150,150 0 0 1 150,150 v292 h-2197 a150,150 0 0 1 -150,-150 v-292 z
+       => BO 2 GOC DOI NHAU: TREN-PHAI va DUOI-TRAI, ban kinh 150
+       => hai goc con lai (tren-trai, duoi-phai) VUONG
+       => KHONG he co vat cheo, KHONG co tam giac bong gap
+     Kich thuoc goc: 2347 x 442  =>  ban kinh 150/442 = 34% CHIEU CAO
+     O icon trang: 526/2347 = 22.4% be ngang nut, bo cung kieu
+     Bong (filter trong SVG): dx4 dy4 stdDeviation19.5 opacity .22
+
+     🔴 3 lan truoc Em Teo doan tu ANH CHUP nen sai het:
+        lan 1 goc vuong · lan 2-3 VAT CHEO + tam giac bong gap.
+        That ra chi la BO 2 GOC DOI NHAU ban kinh lon.
+     🔴 BAI HOC: co file SVG thi DOC PATH, dung doan tu anh chup.
+     ======================================================================== */
+  --r:18px; --nen:var(--wp-primary);
+  border-radius:0 var(--r) 0 var(--r);
+  background:var(--nen);
+  color:var(--wp-text);
+  box-shadow:3px 3px 14px rgba(0,0,0,.26);
+  transition:background .15s, box-shadow .15s, transform .08s;
+}
+.k3d:hover{--nen:var(--wp-primary-hover);background:var(--nen)}
+.k3d:active,.k3d.nhan-xuong{transform:translateY(2px);
+  box-shadow:1px 1px 6px rgba(0,0,0,.30)}
+/* bien the VANG - phan khu ERA doc quyen */
+.k3d.vang{--nen:var(--wp-vang);background:var(--nen);color:var(--wp-primary)}
+.k3d.vang:hover{--nen:#EBC069;background:var(--nen)}
+/* bien the TRANG - cac phan khu con lai */
+.k3d.trang{--nen:var(--wp-text);background:var(--nen);color:var(--wp-primary)}
+.k3d.trang:hover{--nen:#E8F3F6;background:var(--nen)}
+/* nut khong dung duoc: doi MAU NEN dac, KHONG dung opacity
+   (opacity lam nut mo nhin xuyen thay anh nen - xau) */
+.k3d:disabled{--nen:#0A2A34;background:var(--nen);color:rgba(255,255,255,.38);
+  box-shadow:2px 2px 10px rgba(0,0,0,.22);cursor:not-allowed}
+.k3d:disabled:hover{--nen:#0A2A34;background:var(--nen)}
+.k3d:disabled:active{transform:none}
+
+/* Ban kinh = 34% chieu cao, tinh rieng cho tung co nut */
+.chip,.o{--r:14px}          /* cao 40px */
+.nut-icon{--r:16px}         /* nut icon vuong 48px */
+.tab{--r:18px}              /* cao 52px */
+#brand{--r:18px}
+#bang{--r:22px}
+#dangxem{--r:14px}
+.fly .hop{--r:16px}
+.fly .ten{--r:9px}
+
+
+/* ============ Vung phan khu (SVG) - CHI HIEN KHI RE/CHON ============ */
+/* 🔴 SVG la phan tu thay the: inset:0 KHONG keo gian duoc, phai khai
+   width/height 100% - khong thi the SVG chi 300x150 va cat mat het vung. */
+#vung{position:fixed;top:0;left:0;width:100%;height:100%;z-index:30;pointer-events:none;overflow:visible}
+#vung polygon{pointer-events:auto;cursor:pointer;
+  fill:transparent;stroke:transparent;stroke-width:1.5;
+  transition:fill .2s,stroke .2s}
+#vung polygon.sang.era{fill:var(--wp-vang-mo);stroke:var(--wp-vang);stroke-width:2}
+#vung polygon.sang.phu{fill:var(--wp-trang-mo);stroke:rgba(255,255,255,.88)}
+
+/* ============ Nhan phan khu ============ */
+#lop-nhan{position:fixed;inset:0;z-index:40;pointer-events:none}
+.pk{position:absolute;transform:translate(-50%,-100%);
+  display:flex;flex-direction:column;align-items:center;
+  pointer-events:auto;cursor:pointer;will-change:transform}
+.pk .nhan{padding:var(--wp-space-xs) var(--wp-space-md);
+  font-size:var(--wp-fs-label);font-weight:var(--wp-fw-bold);letter-spacing:.5px;
+  white-space:nowrap;line-height:1.25}
+.pk .duong{width:1px;height:44px;margin-top:4px}
+.pk .cham{width:12px;height:12px;border-radius:var(--wp-radius-full);margin-bottom:-6px}
+.pk.era .duong{background:var(--wp-vang);width:2px}
+.pk.era .cham{background:var(--wp-vang);border:2px solid var(--wp-primary)}
+.pk.phu .duong{background:rgba(255,255,255,.85)}
+.pk.phu .cham{background:var(--wp-text);border:2px solid var(--wp-primary)}
+.pk.phu{opacity:.9}
+.pk.phu:hover,.pk.phu.sang{opacity:1}
+/* 🔴 15/09 — CHUI DUOI BANG "Lop hien thi" thi THU VE CHAM (phuong an A).
+   Bang la `position:fixed` z-index 50, nam TREN lop nhan (40) va lop tien
+   ich (38) -> chu bi bang de, doc khong ra ma van chiem cho. Thu ve cham
+   thi het ban, va CHAM VAN DUNG DUNG TOA DO THAT — giu bay 51/52, khong
+   bao gio dich diem neo de tranh che. Cot ngan lai cho cham khoi lo leo. */
+.pk.gon .nhan{display:none}
+.pk.gon .duong{height:10px}
+
+/* ============ 15/09 — BẤM MỘT PHÂN KHU THÌ TẬP TRUNG VÀO NÓ ============
+   Anh Tony chốt 15/09:
+     bấm  ->  7 phân khu kia VÀ cả 20 gim tiện ích ẨN HẲN (opacity 0)
+     sau ~5 giây  ->  tự mờ hiện lại, opacity chạy từ 0 lên 80%
+   Dải 8 nút ở đáy KHÔNG bao giờ bị ẩn. Camera vẫn bay tới như cũ.
+
+   🔴 Làm bằng OPACITY, KHÔNG dùng display:none — display không chuyển
+      mượt được, mà Anh muốn thấy nó "mờ hiện lên".
+   🔴 Khối luật này phải đặt SAU `.pk.phu:hover` ở trên: hai bên cùng
+      độ đặc hiệu (3 lớp), CSS lấy cái đứng sau.
+   ======================================================================= */
+.pk,.ti{transition:opacity .9s ease}
+#vung polygon{transition:fill .2s,stroke .2s,opacity .9s ease}
+
+/* Đang chọn một phân khu: những thứ KHÁC lùi về 80% */
+.co-chon .pk:not(.duoc-chon),
+.co-chon #vung polygon:not(.duoc-chon),
+.co-chon .ti{opacity:.8}
+/* rê chuột vào thì vẫn sáng lên đủ, cho còn đọc được */
+.co-chon .pk:not(.duoc-chon):hover,
+.co-chon .ti:hover{opacity:1}
+
+/* 5 giây đầu: ẩn hẳn. Thêm 1 lớp nên đặc hiệu hơn, luôn thắng luật trên. */
+.co-chon.tap-trung .pk:not(.duoc-chon),
+.co-chon.tap-trung #vung polygon:not(.duoc-chon),
+.co-chon.tap-trung .ti{opacity:0;pointer-events:none}
+
+
+/* ============ Gim tien ich (lop phu, nhat hon phan khu) ============
+   Phan khu la nhan vat chinh (vang/trang dam) -> tien ich phai NHE hon,
+   khong thi 28 nhan cung mau se danh nhau tren mot man hinh. */
+#lop-ti{position:fixed;inset:0;z-index:38;pointer-events:none}
+/* 🔴 Sua 14/09 - cung mot benh voi gim flycam ben tab Thuc te, Anh Tony chot
+   "tach cham khoi nhan". Truoc: `--dy` nam trong transform cua ca khoi .ti,
+   ma khoi do gom nhan + cong day + CHAM TRON dinh lien nhau. Nang nhan len
+   tranh chong chu la NANG CA CHAM di theo -> cham roi khoi toa do that
+   (do duoc: lech toi 131px doc). Cong day dai ra khong he bu lai duoc.
+   Nay: .ti la mot DIEM NEO khong kich thuoc dat dung toa do; cham tron can
+   giua diem neo nen bat dong. Nhan va cong day treo len tren bang
+   position:absolute, day len bao nhieu cung khong keo cham theo. */
+.ti{position:absolute;transform:translate(-50%,-50%);
+  width:0;height:0;--cot:22px;
+  pointer-events:none;cursor:pointer;will-change:transform;opacity:.88}
+.ti:hover,.ti.sang{opacity:1;z-index:2}
+/* Nhan gim = nut 2 khoi thu nho, cung ngon ngu voi .n2k:
+   o icon trang bo goc trai · than vat cheo goc duoi-phai · bong do mem. */
+.ti .nhan{--r:9px; --nen:var(--wp-overlay-nav);
+  position:absolute;left:50%;bottom:50%;pointer-events:auto;
+  transform:translateX(-50%) translateY(calc(-1 * var(--cot) + var(--dy,0px)));
+  display:flex;align-items:stretch;gap:0;padding:0;background:none;
+  font-size:11px;font-weight:var(--wp-fw-bold);letter-spacing:.4px;
+  white-space:nowrap;line-height:1.2;color:var(--wp-text)}
+.ti:hover .nhan,.ti.sang .nhan{--nen:var(--wp-primary-hover)}
+.ti .nhan svg{width:13px;height:13px;flex:0 0 auto;display:block;fill:none;
+  stroke:var(--wp-primary);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+/* 🔴 ICON LECH (Anh Tony bao 12/09): o icon chi rong 24px ma bo 2 goc doi
+   ban kinh 9px (=36%) -> hai goc cong an gan het o, icon 13px trong nhu bi
+   day lech. Them nua than chui duoi bang margin am lam phan trang con hep.
+   ✅ O icon rong ra 30px · ban kinh rieng 7px · BO margin am (chi nut to moi
+      can chui duoi) · icon can giua bang aspect vuong. */
+.ti .nhan > .o{display:flex;align-items:center;justify-content:center;
+  flex:0 0 auto;width:30px;background:var(--wp-text);
+  border-radius:0 7px 0 7px;
+  box-shadow:2px 2px 7px rgba(0,0,0,.26);position:relative;z-index:2}
+.ti .nhan > span{display:flex;align-items:center;
+  padding:5px var(--wp-space-sm) 5px 10px;
+  background:var(--nen);border-radius:0 var(--r) 0 var(--r);
+  box-shadow:2px 2px 7px rgba(0,0,0,.26)}
+.ti.g-ha-tang .nhan > .o{background:var(--wp-vang)}
+.ti.g-ha-tang .nhan svg{stroke:var(--wp-vang-canh)}
+/* gim thu ve chi con icon -> o trang bo ca 4 goc cho tron tria */
+.ti.gon .nhan > .o{border-radius:0 7px 0 7px}
+.ti.g-ha-tang .nhan > .o{background:var(--wp-vang)}
+.ti.g-ha-tang .nhan svg{stroke:var(--wp-vang-canh)}
+.ti .duong{position:absolute;left:50%;bottom:50%;width:1px;pointer-events:none;
+  height:calc(var(--cot) - var(--dy,0px));transform:translateX(-50%);
+  background:rgba(255,255,255,.6)}
+/* Gim sat mep man: nhan can giua se bi cat mat nua chu -> doi sang neo mep.
+   Cham tron VAN dung cho, chi rieng nhan xe sang mot ben. */
+.ti.trai .nhan{transform:translateX(-4px)
+  translateY(calc(-1 * var(--cot) + var(--dy,0px)))}
+.ti.phai .nhan{transform:translateX(calc(-100% + 4px))
+  translateY(calc(-1 * var(--cot) + var(--dy,0px)))}
+.ti.gon .nhan > span{display:none}
+.ti.gon{--cot:10px}
+.ti.gon:hover .nhan > span,.ti.gon.sang .nhan > span{display:flex}
+.ti.gon .cham{width:10px;height:10px}
+.ti .cham{position:absolute;left:50%;top:50%;pointer-events:auto;
+  transform:translate(-50%,-50%);
+  width:8px;height:8px;border-radius:var(--wp-radius-full);
+  background:var(--wp-text);border:2px solid var(--wp-primary)}
+.ti.g-noi-khu .cham{background:var(--wp-primary-tint)}
+.ti.g-ha-tang .cham{background:var(--wp-vang)}
+
+/* ============ Bang bat/tat lop (hoc cot loc cua PGBL) ============ */
+#bang{position:fixed;left:var(--wp-space-md);
+  top:calc(var(--wp-space-md) + var(--wp-nav-h) + var(--wp-space-sm));
+  z-index:var(--wp-z-overlay);width:246px;max-width:calc(100vw - 32px);
+  padding:var(--wp-space-sm) var(--wp-space-md) var(--wp-space-md)}
+#bang .tieu{font-size:var(--wp-fs-label);font-weight:var(--wp-fw-bold);
+  letter-spacing:.5px;text-transform:uppercase;color:var(--wp-primary-tint);
+  margin-bottom:var(--wp-space-xs)}
+#bang .lop{height:var(--wp-control-h);margin-top:var(--wp-space-xs);width:100%}
+#bang .lop > .tx{flex:1}
+#bang .con{margin:var(--wp-space-xs) 0 0 var(--wp-space-sm);
+  display:flex;flex-direction:column;gap:var(--wp-space-xxs)}
+#bang .con.an{display:none}
+#bang .nh{display:flex;align-items:center;gap:var(--wp-space-xs);
+  padding:5px var(--wp-space-xs);cursor:pointer;
+  font-size:11px;letter-spacing:.3px;color:var(--wp-text-soft);background:none;border:0}
+#bang .nh:hover{color:var(--wp-text)}
+#bang .nh i{width:11px;height:11px;flex:0 0 auto;
+  border:1px solid var(--wp-primary-tint);background:transparent}
+#bang .nh.on i{background:var(--wp-primary-tint)}
+#bang .nh.tat{opacity:.45}
+@media (max-width:820px){ #bang{width:210px} }
+
+
+/* ==================================================================
+   TOI UU THIET BI  (12/09 - hoc cach 8082 + chuan iPad gen 9 cua minh)
+   ------------------------------------------------------------------
+   🔴 May Sale dung tu van khach la iPad gen 9: NGANG 1080x810 CSS,
+      DOC 810x1080 (xem 00-DOC-TRUOC.md). iPad ngang 1080 > 820 nen di
+      nhanh desktop; iPad doc 810 <= 820 nen di nhanh hep.
+   🔴 Hoc cua 8082: phai co CA `max-width` LAN `max-height`.
+      Dien thoai XOAY NGANG chi cao ~390px - `max-width` khong bat duoc
+      ca nay, bang doc se tran qua thanh buoc.
+   ================================================================== */
+
+/* --- Nut mo bang (chi hien khi man hep hoac man thap) --- */
+#mo-bang{display:none!important;position:fixed;left:var(--wp-space-md);
+  top:calc(var(--wp-space-md) + var(--wp-nav-h) + var(--wp-space-sm));
+  z-index:calc(var(--wp-z-overlay) + 1);
+  height:var(--wp-control-h)}
+
+@media (max-width:820px), (max-height:600px){
+  #mo-bang{display:inline-flex!important}
+  #bang{display:none}
+  html.mo-bang #bang{display:block}
+  html.mo-bang #mo-bang{background:var(--wp-primary-hover)}
+  /* bang che anh thi cho no ngan gon lai */
+  #bang{width:230px;max-height:calc(100vh - 200px);overflow-y:auto;scrollbar-width:none}
+  #bang::-webkit-scrollbar{display:none}
+}
+
+/* --- Dien thoai xoay ngang / cua so thap: doi chieu cao, khong doi be ngang --- */
+@media (max-height:600px){
+  #bang{top:calc(var(--wp-space-xs) + var(--wp-nav-h));
+        padding:var(--wp-space-xs) var(--wp-space-sm) var(--wp-space-sm)}
+  #bang .lop{height:34px}
+  #brand{min-height:40px;padding:4px var(--wp-space-sm)}
+  #brand img{height:22px}
+  /* thanh buoc + chip an sat day de chua lay khung nhin */
+  #nav{bottom:var(--wp-space-sm)}
+  #chip{bottom:calc(var(--wp-space-sm) + var(--wp-nav-h) + var(--wp-space-xxs))}
+  .tab{height:44px;font-size:var(--wp-fs-label)}
+}
+
+/* --- Dien thoai doc --- */
+@media (max-width:560px){
+  #bang{width:calc(100vw - 32px)}
+  .ti .nhan{font-size:10.5px;padding:4px var(--wp-space-xs) 4px 6px}
+  .ti .nhan > .o{width:21px} .ti .nhan svg{width:12px;height:12px}
+  .pk .nhan{font-size:11px}
+  #brand .ten{font-size:13px}
+  .chip{height:34px;padding:0 var(--wp-space-sm)}
+}
+
+/* --- Man rat cao/hep (dien thoai doc) hoac iPad doc: cot dieu khien 2 hang --- */
+@media (max-width:820px) and (min-height:700px){
+  }
+
+
+/* 🔴 Do that 12/09 tren dien thoai XOAY NGANG (844x390): cot dieu khien
+   7 nut x 48px + khe = 408px > 390px chieu cao man -> TRAN ra ngoai va de
+   len dai chip. Day dung la ca ma `max-width` khong bat duoc.
+   Man thap: thu nut lai; man RAT thap: xep 2 cot. */
+@media (max-height:600px){
+  }
+@media (max-height:460px){
+    /* dai chip can giua man nhung qua rong -> dam sang cot nut ben phai.
+     Chua san cho cot (2x38 + khe + le = ~110px). */
+  #chip,#nav{max-width:calc(100vw - 220px)}
+}
+
+
+/* ==================================================================
+   NUT 2 KHOI  - mau Anh Tony gui 12/09
+   O icon nen TRANG ben trai + than chu nen teal ben phai, bong do mem.
+   🔴 Giu GOC VUONG theo design system ERA (1 trong 3 ngoai le Anh Tony
+      chot 10/09), khong bo tron nhu anh mau.
+   ================================================================== */
+/* Nut CO O ICON - cung cong thuc voi .k3d, them o trang ben trai.
+   O trang CUNG bi vat goc duoi-phai + co tam giac bong (giay gap) - day la
+   chi tiet Em Teo bo sot 3 lan dau. */
+/* Nut CO O ICON - theo Group.svg: o trang 22.4% be ngang, CUNG bo 2 goc doi
+   (tren-phai + duoi-trai) va co bong rieng. Than cung kieu do. */
+.n2k{--r:16px; --nen:var(--wp-primary);
+  display:inline-flex;align-items:stretch;border:0;padding:0;
+  background:none;color:var(--wp-text);cursor:pointer;
+  transition:transform .08s}
+.n2k:hover{--nen:var(--wp-primary-hover)}
+.n2k:active,.n2k.nhan-xuong{transform:translateY(2px)}
+
+.n2k > .ic{display:flex;align-items:center;justify-content:center;
+  flex:0 0 auto;width:46px;align-self:stretch;background:var(--wp-text);
+  border-radius:0 11px 0 11px;
+  box-shadow:3px 3px 14px rgba(0,0,0,.26);
+  position:relative;z-index:2}
+.n2k > .ic svg{width:18px;height:18px;fill:none;stroke:var(--wp-primary);
+  stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
+.n2k > .tx{display:flex;align-items:center;gap:var(--wp-space-xs);
+  padding:0 var(--wp-space-md) 0 var(--wp-space-lg);white-space:nowrap;
+  background:var(--nen);
+  border-radius:0 var(--r) 0 var(--r);
+  margin-left:calc(var(--r) * -1);padding-left:calc(var(--wp-space-lg) + var(--r));
+  box-shadow:3px 3px 14px rgba(0,0,0,.26);
+  font-size:var(--wp-fs-label);font-weight:var(--wp-fw-bold);
+  letter-spacing:.9px;text-transform:uppercase}
+.n2k.tat{opacity:.5}
+.n2k.vang{--nen:var(--wp-vang);color:var(--wp-primary)}
+.n2k.vang > .ic svg{stroke:var(--wp-vang-canh)}
+@media (max-height:600px){ .n2k{--r:13px} .n2k > .ic{width:34px} }
+
+/* ============ Brand ============ */
+#brand{position:fixed;top:var(--wp-space-md);left:var(--wp-space-md);z-index:var(--wp-z-overlay);
+  min-height:var(--wp-nav-h);display:flex;align-items:center;gap:var(--wp-space-sm);
+  padding:var(--wp-space-xs) var(--wp-space-md);cursor:default}
+#brand:hover{--nen:var(--wp-primary)}
+#brand:active{transform:none;box-shadow:
+    inset 0 2px 0 var(--wp-3d-sang), inset 2px 0 0 rgba(255,255,255,.12),
+    inset 0 -3px 0 var(--wp-3d-toi), inset -2px 0 0 rgba(0,0,0,.2),
+    0 4px 0 var(--wp-canh-teal), var(--wp-3d-do)}
+#brand img{height:28px;width:auto;display:block}
+#brand .ten{font-size:var(--wp-fs-body);color:var(--wp-text);letter-spacing:.5px;line-height:1.15}
+#brand .phu{font-size:var(--wp-fs-label);font-weight:var(--wp-fw-bold);letter-spacing:.5px;
+  color:var(--wp-primary-tint);text-transform:uppercase;line-height:1.25}
+
+/* ============ Cot dieu khien ============ */
+.nut-icon{width:var(--wp-control-h-lg);height:var(--wp-control-h-lg);
+  display:flex;align-items:center;justify-content:center}
+.nut-icon svg{width:20px;height:20px;fill:none;stroke:var(--wp-on-primary);
+  stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* ============ Chip phan khu ============ */
+#chip,#chip-dh{position:fixed;left:calc(50% - var(--ds-chua,0px) / 2);
+  transform:translateX(-50%);
+  bottom:calc(var(--wp-space-xl) + var(--wp-nav-h) + var(--wp-space-sm));
+  max-width:calc(100vw - var(--wp-space-xl) - var(--ds-chua,0px))}
+#chip{z-index:var(--wp-z-overlay);display:flex;align-items:flex-start;gap:var(--wp-space-xs);
+  overflow-x:auto;scrollbar-width:none;scroll-behavior:smooth;
+  padding:0 var(--wp-space-xxs) 6px}
+#chip::-webkit-scrollbar{display:none}
+/* Khi co lop mui ten, chua le cho chip khoi chui xuong duoi mui ten/so dem
+   (khong thi chu bi cat dau: "AQUARIA" thanh "QUARIA"). Chi chua khi CAN. */
+#chip.co-dh{padding-left:34px;padding-right:70px;scroll-padding-inline:34px 70px}
+.chip{flex:0 0 auto;height:var(--wp-control-h);padding:0 var(--wp-space-md);
+  font-size:var(--wp-fs-label);font-weight:var(--wp-fw-bold);letter-spacing:1px;
+  text-transform:uppercase;white-space:nowrap}
+
+/* ============ Mui ten + so dem cho dai chip (Anh Tony chot 15/09) ============
+   Y HET trang Thuc te - Anh Tony bao "lam tuong tu".
+   Van de: `#chip` cuon ngang nhung thanh cuon bi an han (`scrollbar-width:none`)
+   => tren dien thoai khach chi thay 2-3 phan khu va KHONG CO DAU HIEU NAO
+   cho biet con 5 cai nua.
+
+   🔴 PHAI khai `width` TUONG MINH: `#chip-dh` la `position:fixed` nen no co lai
+      vua noi dung, ma moi dua con deu `position:absolute` (ra ngoai luong)
+      => noi dung rong 0 => CA LOP RONG 0px, hai mui ten don ve mot cho va bi
+      chip chan mat cu bam. Khong bao mot dong loi nao (bay 56, 15/09).
+   ⚠️ `#chip` co `padding-bottom:6px` nen chip nam CAO HON day 6px
+      => `#chip-dh` phai nhac len dung 6px, khong thi mui ten lech xuong. */
+#chip-dh{z-index:calc(var(--wp-z-overlay) + 1);pointer-events:none;
+  width:calc(100vw - var(--wp-space-xl) - var(--ds-chua,0px));
+  height:var(--wp-control-h);display:none;
+  bottom:calc(var(--wp-space-xl) + var(--wp-nav-h) + var(--wp-space-sm) + 6px)}
+#chip-dh.hien{display:block}
+/* 🔴 Mui ten noi de len chip, ma chip o day mau VANG hoac TRANG (phan khu ERA
+   / phan khu khac) - de mau teal thuong thi chim vao nen anh. Dung ton dam
+   `--wp-canh-teal` + vien mo -> noi thanh mot LOP RIENG nam tren.
+   Khong them mau moi (luat 2 design system). */
+.chip-mt{position:absolute;top:0;width:30px;height:var(--wp-control-h);
+  pointer-events:auto;display:flex;align-items:center;justify-content:center;
+  --r:11px;padding:0;--nen:var(--wp-canh-teal);
+  box-shadow:0 0 0 1px rgba(127,211,227,.3), 2px 2px 12px rgba(0,0,0,.5)}
+.chip-mt:hover{--nen:var(--wp-primary)}
+.chip-mt svg{width:15px;height:15px;fill:none;stroke:var(--wp-on-primary);
+  stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.chip-mt.trai{left:0}
+.chip-mt.phai{right:0}
+/* Het duong ben nao thi mui ten ben do mo han + khong bam duoc.
+   Doi MAU NEN dac, khong dung opacity (luat 12/09). */
+.chip-mt.het{--nen:#0A2A34;pointer-events:none}
+.chip-mt.het svg{stroke:rgba(255,255,255,.34)}
+/* So dem - cho khach biet co TAT CA bao nhieu phan khu */
+#chip-dem{position:absolute;top:0;right:34px;height:var(--wp-control-h);
+  display:flex;align-items:center;padding:0 var(--wp-space-xs);--r:11px;
+  --nen:var(--wp-canh-teal);
+  box-shadow:0 0 0 1px rgba(127,211,227,.3), 2px 2px 12px rgba(0,0,0,.5);
+  font-size:var(--wp-fs-label);font-weight:var(--wp-fw-bold);letter-spacing:.5px;
+  color:var(--wp-primary-tint);white-space:nowrap}
+#chip-dem b{color:var(--wp-text);font-weight:var(--wp-fw-bold)}
+
+/* ============ Thanh buoc ============ */
+#nav{position:fixed;left:50%;transform:translateX(-50%);bottom:var(--wp-space-xl);
+  z-index:var(--wp-z-overlay);display:flex;align-items:flex-start;
+  gap:var(--wp-space-xs);max-width:calc(100vw - var(--wp-space-xl));
+  overflow-x:auto;scrollbar-width:none;padding-bottom:6px}
+#nav::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;height:var(--wp-nav-h);padding:0 var(--wp-space-lg);
+  font-size:var(--wp-fs-label);font-weight:var(--wp-fw-bold);letter-spacing:1.1px;
+  text-transform:uppercase;white-space:nowrap}
+.tab.on{--nen:var(--wp-primary-hover)}
+/* 🔴 opacity lam nut MO NHIN XUYEN thay cay coi phia sau - xau.
+   Nut khong dung duoc thi doi MAU NEN (dac) + chu nhat, dung opacity. */
+.tab:disabled{cursor:not-allowed}
+.tab:disabled:hover{--nen:rgba(0,60,75,.78)}
+.tab:disabled:active{transform:none}
+
+/* ============ Panel thong tin ============ */
+#tt{position:fixed;top:calc(var(--wp-space-md) + var(--wp-nav-h) + var(--wp-space-sm));
+  left:var(--wp-space-md);z-index:var(--wp-z-overlay);width:300px;max-width:calc(100vw - 32px);
+  background:var(--wp-overlay-nav);border:1px solid var(--wp-hairline);
+  border-radius:var(--wp-radius-none);padding:var(--wp-space-lg);display:none}
+#tt.hien{display:block}
+#tt .tieu{font-size:var(--wp-fs-label);font-weight:var(--wp-fw-bold);letter-spacing:.5px;
+  color:var(--wp-primary-tint);text-transform:uppercase;margin-bottom:var(--wp-space-md)}
+#tt .hang{display:flex;justify-content:space-between;gap:var(--wp-space-md);
+  padding:var(--wp-space-sm) 0;border-bottom:1px solid var(--wp-hairline)}
+#tt .hang:last-child{border-bottom:0;padding-bottom:0}
+#tt .n{font-size:var(--wp-fs-label);color:var(--wp-text-muted);white-space:nowrap}
+#tt .v{font-size:var(--wp-fs-body);color:var(--wp-text);text-align:right}
+
+/* ============ Man tai ============ */
+#tai{position:fixed;inset:0;z-index:var(--wp-z-toast);background:var(--wp-canvas);
+  display:flex;align-items:center;justify-content:center;
+  font-size:var(--wp-fs-label);font-weight:var(--wp-fw-bold);letter-spacing:.5px;
+  text-transform:uppercase;color:var(--wp-primary-tint)}
+#tai.xong{display:none}
+
+@media (max-width:820px){ .pk .duong{height:32px} }
+</style></head><body>
+
+<div id="pano"></div>
+<svg id="vung" xmlns="http://www.w3.org/2000/svg"></svg>
+<div id="lop-nhan"></div>
+<div id="lop-ti"></div>
+
+<div id="brand" class="k3d">
+  <img id="logo-era" src="skin/logo-era.png" alt="ERA Vietnam" onerror="this.remove()">
+  <div>
+    <div class="ten" id="ten-da">WATERPOINT</div>
+    <div class="phu" id="ten-canh">Tổng quan khu đô thị</div>
+  </div>
+</div>
+
+<!-- Cot dieu khien ben phai: Anh Tony yeu cau XOA 12/09.
+     Mat theo: zoom +/- · tu xoay · toan man hinh · an/hien gim · doi canh · thong tin du an.
+     Ban cu con trong index.html.bak-truoc-xoa-cot-20260912 -->
+<div id="tt-ds"></div></div>
+
+<button class="n2k" id="mo-bang" type="button">
+  <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></span>
+  <span class="tx">Lớp hiển thị</span></button>
+<div id="bang" class="k3d">
+  <div class="tieu">Lớp hiển thị</div>
+  <button class="n2k lop" id="l-pk" type="button">
+    <span class="ic"><svg viewBox="0 0 24 24"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg></span>
+    <span class="tx">Phân khu</span></button>
+  <button class="n2k lop" id="l-ti" type="button">
+    <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.1-7-10a7 7 0 1 1 14 0c0 4.9-7 10-7 10z"/><circle cx="12" cy="11" r="2.6"/></svg></span>
+    <span class="tx">Tiện ích</span></button>
+  <div class="con" id="nhom-ti"></div>
+</div>
+<div id="chip"></div>
+<div id="chip-dh">
+  <button type="button" class="k3d chip-mt trai" id="chip-trai" aria-label="Phân khu trước">
+    <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+  </button>
+  <div class="k3d" id="chip-dem"></div>
+  <button type="button" class="k3d chip-mt phai" id="chip-phai" aria-label="Phân khu tiếp">
+    <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+  </button>
+</div>
+<nav id="nav"></nav>
+<div id="tai">Đang tải cảnh 360…</div>
+
+<script src="krpano.js"></script>
+<script>
+"use strict";
+var kp = null, PK = [], hienPK = true, re = -1, chon = -1;
+var SVG_NS = 'http://www.w3.org/2000/svg';
+
+embedpano({
+  xml: "tour.xml", target: "pano", html5: "only", mobilescale: 1.0,
+  passQueryParameters: true, bgcolor: "#000000",
+  onready: function (k) {
+    kp = k;
+    document.getElementById('tai').classList.add('xong');
+    requestAnimationFrame(batTheo);
+  }
+});
+
+/* ---------------- Thông tin dự án + thanh bước ---------------- */
+fetch('du-an.json').then(function (r) { return r.json(); }).then(function (d) {
+  document.getElementById('ten-da').textContent = d.du_an;
+  var T = document.getElementById('tt-ds');
+  d.thong_tin.forEach(function (h) {
+    var e = document.createElement('div');
+    e.className = 'hang';
+    e.innerHTML = '<span class="n"></span><span class="v"></span>';
+    e.querySelector('.n').textContent = h.nhan;
+    e.querySelector('.v').textContent = h.gia_tri;
+    T.appendChild(e);
+  });
+  /* 🔴 15/09 — BO khoi dung thanh buoc o day. Nay ca 4 trang dung chung
+     mot file `../era-buoc.js` (danh sach tab chi con MOT cho).
+     🔴 PHAI bo, khong duoc de lai: khoi nay nam trong callback cua
+     `fetch(du-an.json)` nen chay BAT DONG BO — no co the chay SAU file dung
+     chung va GHI DE NGUOC lai thanh buoc cu, tuy luc nhanh cham cua mang.
+     Kieu loi chay lan duoc, khong bao gio bao loi.
+     Khoa "buoc" trong du-an.json nay khong con ai doc - giu lai lam su lieu. */
+});
+
+/* ---------------- Phân khu ---------------- */
+fetch('phan-khu.json').then(function (r) { return r.json(); }).then(function (d) {
+  PK = d.phan_khu || [];
+  ve();
+});
+
+/* ---------------- Tiện ích (lớp phụ) ----------------
+   Toa do lay tu krpano runtime tour CDT 12/09, do tren DUNG bo anh
+   pano/tt-ngay/ ma canh "tong-quan" dang dung -> khop 1:1, khong phai cham tay.
+   Xem poi.json de biet nguon + ranh gioi su dung. */
+var TI = [], NHOM = [], hienTI = true, tatNhom = {};
+
+/* ---------------- Icon tien ich ----------------
+   ERA tu ve bang SVG net mong 1.6px, khung 24x24, cho khop cot dieu khien.
+   🔴 KHONG dung anh gim cua CDT (muc 8.1) - chi hoc CACH bay tri:
+   PGBL de icon ben trai chu, Anh Tony chot 12/09 lam giong. */
+var IC = {
+  yte:    '<path d="M12 6v12M6 12h12"/>',
+  muasam: '<path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>',
+  hoc:    '<path d="M12 5l9 4-9 4-9-4 9-4z"/><path d="M7 11v5c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-5"/>',
+  xebus:  '<rect x="5" y="5" width="14" height="12" rx="2"/><path d="M5 11h14M8 17v2M16 17v2"/><circle cx="8.5" cy="14" r="1"/><circle cx="15.5" cy="14" r="1"/>',
+  duong:  '<path d="M12 4v3M12 10v4M12 17v3"/><path d="M5 20l2-16M19 20l-2-16"/>',
+  vuichoi:'<circle cx="12" cy="12" r="7"/><path d="M12 5v14M5 12h14"/>',
+  leu:    '<path d="M12 5L4 19h16L12 5z"/><path d="M12 11v8"/>',
+  golf:   '<path d="M9 19V4l8 4-8 4"/><path d="M6 20h7"/>',
+  cay:    '<path d="M12 20v-6"/><path d="M12 14c-3.5 0-5-2.2-5-4.5S9 5 12 5s5 2.2 5 4.5S15.5 14 12 14z"/>',
+  nha:    '<path d="M4 11l8-6 8 6"/><path d="M6 11v8h12v-8"/><path d="M10 19v-4h4v4"/>',
+  thuyen: '<path d="M4 16h16l-2 4H6l-2-4z"/><path d="M12 4v12M12 8l6 3M12 8L6 11"/>',
+  cong:   '<path d="M5 20V9a7 7 0 0 1 14 0v11"/><path d="M9 20v-7a3 3 0 0 1 6 0v7"/>',
+  nhamay: '<path d="M4 20V11l5 3V11l5 3V7h6v13H4z"/>',
+  toanha: '<rect x="6" y="4" width="12" height="16" rx="1"/><path d="M9 8h2M13 8h2M9 12h2M13 12h2M10 20v-4h4v4"/>',
+  cham:   '<circle cx="12" cy="12" r="4"/>'
+};
+function svgIc(t) {
+  return '<svg viewBox="0 0 24 24" aria-hidden="true">' + (IC[t] || IC.cham) + '</svg>';
+}
+
+
+fetch('poi.json').then(function (r) { return r.json(); }).then(function (d) {
+  TI = d.poi || []; NHOM = d.nhom || [];
+  veTI(); veBang();
+});
+
+function veTI() {
+  var L = document.getElementById('lop-ti'); L.innerHTML = '';
+  TI.forEach(function (p, k) {
+    var e = document.createElement('div');
+    e.className = 'ti g-' + p.nhom; e.dataset.k = k;
+    e.innerHTML = '<div class="nhan"><span class="o">' + svgIc(p.icon) + '</span>' +
+                  '<span></span></div><div class="duong"></div><div class="cham"></div>';
+    e.querySelector('.nhan > span:last-child').textContent = p.ten;
+    e.onclick = function () { bayToiTI(k); };
+    L.appendChild(e);
+  });
+}
+
+function bayToiTI(k) {
+  if (!kp) return;
+  var p = TI[k];
+  kp.call('lookto(' + p.ath + ',' + p.atv + ',' + Math.max(55, +kp.get('view.fovmin') + 10) +
+          ', smooth(80,60,40), true, true)');
+}
+
+/* Bảng bật/tắt: lớp lớn (Phân khu · Tiện ích) + lọc theo nhóm,
+   học cột lọc của trang tiện ích Phú Gia (19/08).
+   16/09 - Anh Tony chot BO HAN so dem trong bang nay, cho giong trang Thuc te.
+   `dem` van tinh de AN dong nhom rong, chi khong in ra chu nua. */
+function veBang() {
+  var N = document.getElementById('nhom-ti'); N.innerHTML = '';
+  NHOM.forEach(function (g) {
+    var dem = TI.filter(function (p) { return p.nhom === g.id; }).length;
+    if (!dem) return;
+    var e = document.createElement('button');
+    e.className = 'nh on'; e.type = 'button'; e.dataset.g = g.id;
+    e.innerHTML = '<i></i><span></span>';
+    e.querySelector('span').textContent = g.ten;
+    e.onclick = function () {
+      tatNhom[g.id] = !tatNhom[g.id];
+      e.classList.toggle('on', !tatNhom[g.id]);
+      e.classList.toggle('tat', !!tatNhom[g.id]);
+      if (!hienTI) { hienTI = true; dongBoBang(); }
+    };
+    N.appendChild(e);
+  });
+  dongBoBang();
+}
+
+function dongBoBang() {
+  document.getElementById('l-pk').classList.toggle('tat', !hienPK);
+  document.getElementById('l-ti').classList.toggle('tat', !hienTI);
+  document.getElementById('nhom-ti').classList.toggle('an', !hienTI);
+  var b = document.getElementById('b-nhan');
+  if (b) b.classList.toggle('nhan-xuong', !hienPK);
+}
+
+function ve() {
+  var S = document.getElementById('vung'); S.innerHTML = '';
+  var L = document.getElementById('lop-nhan'); L.innerHTML = '';
+  PK.forEach(function (p, k) {
+    if (p.vung && p.vung.length >= 3) {
+      var g = document.createElementNS(SVG_NS, 'polygon');
+      g.setAttribute('class', p.era ? 'era' : 'phu');
+      g.dataset.k = k;
+      g.addEventListener('mouseenter', function () { datRe(k); });
+      g.addEventListener('mouseleave', function () { datRe(-1); });
+      g.addEventListener('click', function () { bayToi(k); });
+      S.appendChild(g);
+    }
+    var e = document.createElement('div');
+    e.className = 'pk ' + (p.era ? 'era' : 'phu');
+    e.dataset.k = k;
+    e.innerHTML = '<div class="k3d nhan ' + (p.era ? 'vang' : 'trang') + '"></div>' +
+                  '<div class="duong"></div><div class="cham"></div>';
+    e.querySelector('.nhan').textContent = p.ten;
+    e.addEventListener('mouseenter', function () { datRe(k); });
+    e.addEventListener('mouseleave', function () { datRe(-1); });
+    e.onclick = function (ev) { ev.stopPropagation(); bayToi(k); };
+    L.appendChild(e);
+  });
+  veChip();
+}
+
+function datRe(k) { re = k; capNhatSang(); }
+
+/* ============================================================
+   15/09 - Anh Tony chot: BAM MOT PHAN KHU thi TAP TRUNG vao no.
+     bam        -> 7 phan khu kia VA ca 20 gim tien ich an han
+     sau ~5 giay -> tu mo hien lai o 80%
+   Viec an/hien lam het bang CSS (lop `co-chon` + `tap-trung` tren <html>),
+   day chi lo bat/tat lop va bam gio.
+   ============================================================ */
+/* Ca hai moc deu dem TU LUC BAM NUT (Anh Tony chot 15/09), mot cay dong ho:
+     0s   bam  -> moi thu khac an han (opacity 0)
+     5s        -> mo hien lai o 80%
+     30s       -> ve nhu ban dau: het mo, nut nha ra, vung het sang */
+var GIAY_AN_HAN   = 5000;
+var GIAY_VE_NHU_CU = 30000;
+var henHienLai = null, henVeNhuCu = null;
+
+function tapTrung() {
+  var H = document.documentElement;
+  H.classList.add('co-chon', 'tap-trung');
+  /* Bam lien tay sang phan khu khac -> dem lai tu dau CA HAI moc, khong de
+     hen cu bat den giua chung. */
+  clearTimeout(henHienLai);
+  clearTimeout(henVeNhuCu);
+  henHienLai = setTimeout(function () {
+    H.classList.remove('tap-trung');
+  }, GIAY_AN_HAN);
+  henVeNhuCu = setTimeout(function () {
+    /* Reset SACH, y nhu luc moi mo trang: bo lop mo, bo luon trang thai
+       dang chon (nut nha ra, vung het sang). Camera van dung yen o phan
+       khu do - Anh Tony chot camera giu nguyen. */
+    H.classList.remove('co-chon');
+    chon = -1;
+    capNhatSang();
+  }, GIAY_VE_NHU_CU);
+}
+
+function capNhatSang() {
+  var k = (re !== -1) ? re : chon;
+  document.querySelectorAll('#vung polygon, .pk, .chip').forEach(function (e) {
+    e.classList.toggle('sang', +e.dataset.k === k);
+    /* 15/09: `duoc-chon` bam theo `chon`, KHONG theo `re` (re chuot).
+       Khong dung lai duoc lop `sang` vi `sang` nhay theo chuot - re qua
+       phan khu khac la no doi vai chinh/phu ngay giua 5 giay tap trung. */
+    e.classList.toggle('duoc-chon', chon !== -1 && +e.dataset.k === chon);
+    if (e.classList.contains('chip')) e.classList.toggle('nhan-xuong', +e.dataset.k === chon);
+  });
+  /* so dem bam theo `chon` - ke ca luc tapTrung() tu tra ve -1 sau 5 giay */
+  if (typeof capNhatDH === 'function') capNhatDH();
+}
+
+function veChip() {
+  var C = document.getElementById('chip'); C.innerHTML = '';
+  PK.forEach(function (p, k) {
+    var e = document.createElement('button');
+    e.className = 'k3d chip ' + (p.era ? 'vang' : 'trang');
+    e.dataset.k = k;
+    e.textContent = p.ten;
+    e.onmouseenter = function () { datRe(k); };
+    e.onmouseleave = function () { datRe(-1); };
+    /* 🔴 Ban cu: `chon = (chon===k) ? -1 : k; capNhatSang(); bayToi(k);`
+       Doan `? -1 :` la y dinh BO CHON, nhung `bayToi()` ngay dong sau lai
+       `chon = k` de len => bo chon CHUA BAO GIO chay. Khong ai thay vi
+       hoi do bo chon chang doi gi tren man hinh.
+       Nay bo han y dinh do: Anh Tony chot 15/09 duong quay ve la **5 giay
+       tu dong**, khong can nut bo chon. Bam lai dung nut dang chon = TAP
+       TRUNG LAI (an di roi mo hien lai), dung nhu bam lan dau. */
+    e.onclick = function () { bayToi(k); };
+    C.appendChild(e);
+  });
+  capNhatDH();
+}
+
+/* ---- Mui ten + so dem cua dai chip (Anh Tony chot 15/09, lam giong trang Thuc te) ----
+   `#chip` cuon ngang nhung thanh cuon bi an han => tren dien thoai khach chi
+   thay 2-3 phan khu va khong co dau hieu nao la con nua. */
+function capNhatDH() {
+  var L = document.getElementById('chip'), H = document.getElementById('chip-dh');
+  if (!L || !H) return;
+  var duoi = L.scrollWidth - L.clientWidth;
+  /* 🔴 Bat `co-dh` TRUOC roi moi do lai: lop do them padding nen `scrollWidth`
+     doi theo. Do mot lan roi bat lop la con so da cu. */
+  L.classList.toggle('co-dh', duoi > 2);
+  duoi = L.scrollWidth - L.clientWidth;
+  H.classList.toggle('hien', duoi > 2);
+  if (duoi <= 2) { L.classList.remove('co-dh'); return; }
+
+  var x = L.scrollLeft;
+  document.getElementById('chip-trai').classList.toggle('het', x <= 1);
+  document.getElementById('chip-phai').classList.toggle('het', x >= duoi - 1);
+
+  /* 🔴 KHAC trang Thuc te mot cho: ben do luon co "canh dang xem" nen bao gio
+     cung ra dang "2/5". Ben nay `chon` ve -1 sau 5 giay (co che tap trung
+     15/09), tuc PHAN LON THOI GIAN KHONG CO CAI NAO DANG CHON.
+     => chua chon thi chi hien TONG SO ("8" = co 8 phan khu), chon roi thi
+     "3/8". Con so tong moi la thu khach can biet. */
+  var d = document.getElementById('chip-dem');
+  d.innerHTML = '';
+  d.title = PK.length + ' phân khu';
+  if (chon >= 0) {
+    var b = document.createElement('b');
+    b.textContent = chon + 1;
+    d.appendChild(b);
+    d.appendChild(document.createTextNode('/' + PK.length));
+  } else {
+    var b2 = document.createElement('b');
+    b2.textContent = PK.length;
+    d.appendChild(b2);
+  }
+}
+
+function truotChip(huong) {
+  var L = document.getElementById('chip');
+  /* truot 80% be ngang khung - chua mot "trang" nhung van chua lai mep chip cu */
+  L.scrollLeft += huong * Math.max(120, L.clientWidth * 0.8);
+  setTimeout(capNhatDH, 420);   /* scroll-behavior:smooth -> doi chay xong */
+}
+document.getElementById('chip-trai').onclick = function () { truotChip(-1); };
+document.getElementById('chip-phai').onclick = function () { truotChip(1); };
+/* khach tu vuot tay thi mui ten cung phai cap nhat theo */
+document.getElementById('chip').addEventListener('scroll', capNhatDH, { passive: true });
+addEventListener('resize', capNhatDH);
+
+function bayToi(k) {
+  var p = PK[k]; if (!kp || !p) return;
+  /* 15/09: moi duong vao day deu la "chon mot phan khu" - bam nut o dai chip,
+     bam thang len nhan tren anh, hay bam vao vung da giac. Anh Tony chot ca
+     ba lam giong nhau, nen goi tapTrung() ngay tai day cho khoi sot cho nao. */
+  chon = k; capNhatSang(); tapTrung();
+  kp.call('lookto(' + p.ath + ',' + p.atv + ',70,smooth(200,200,80),true,true)');
+}
+
+/* Nhãn + vùng bám theo ảnh mỗi khung hình.
+   PHAI dung JS API kp.spheretoscreen(...) - truyen so qua kp.call() thi
+   tham so KHONG vao duoc (bay 46, do ngay 09/09). */
+/* ============================================================
+   15/09 - BANG "Lop hien thi" CUNG LA MOT VAT CAN (phuong an A)
+   ------------------------------------------------------------
+   Do duoc 15/09 tren iPad9 ngang 1080x810: bang cao 235px, z-index 50,
+   de len 4 nhan (1 phan khu + 3 tien ich). Desktop 1440x900 thi 0 cai
+   -> DANH SACH NHAN BI DE KHONG CO DINH, doi khung man hay doi goc
+   camera la doi. Vi vay sua theo LUAT, dung sua theo ten nhan.
+
+   Vi sao khong nhet bang vao vong ne chong san co:
+     - phep so o do la DAI NGANG 34px (cao mot cai nhan), bang cao 235px
+       = bay dai -> day len 34px la chui lai vao bung bang;
+     - vong do chi day LEN, tran 4 bac = 136px, khong du ra khoi bang;
+     - bang nam ben TRAI, huong thoat tu nhien la sang ngang, ma code
+       khong he co truc --dx;
+     - nhan phan khu deu `khoa: true`, khong bao gio nhuc nhich.
+
+   🔴 BAY NHAP NHAY - LY DO PHAI DO TU DIEM NEO, KHONG DO HOP DANG HIEN:
+   thu ve cham xong thi `.nhan` bi `display:none`, do lai ra 0x0 -> het
+   giao voi bang -> bung chu ra -> lai giao -> thu ve... lap vo tan o
+   60 khung/giay. Cung ho bay 51: dau vao cua quyet dinh khong duoc phu
+   thuoc dau ra cua chinh no. Nen: nho so do nhan luc con hien du chu
+   (le so voi diem neo), roi luon dung so da nho de tinh.                */
+var hopBang = null;
+
+function doBang() {
+  var e = document.getElementById('bang');
+  hopBang = (e && getComputedStyle(e).display !== 'none')
+            ? e.getBoundingClientRect() : null;
+}
+
+function dyCua(e) {
+  return +(e.style.getPropertyValue('--dy') || '0').replace('px', '');
+}
+
+/* Hop chu nhat MA NHAN SE CHIEM neu no dang hien du chu, o muc day `dy`.
+   So nho lai deu QUY VE dy = 0 roi moi cong `dy` dang xet vao - de mot cai
+   nhan vua bi day len 136px khong mang theo so do cu di so sanh. */
+function hopNhan(e, x, y, dy) {
+  var nh = e.querySelector('.nhan');
+  if (!nh) return null;
+  if (!e.classList.contains('gon')) {
+    var r = nh.getBoundingClientRect();
+    if (r.width > 0) {          /* font chua ve xong thi ra 0 - dung ghi de */
+      e.dataset.nx = r.left - x;
+      e.dataset.ny = r.top - y - dyCua(e);
+      e.dataset.nw = r.width;
+      e.dataset.nh = r.height;
+    }
+  }
+  if (!e.dataset.nw) return null;
+  var l = x + +e.dataset.nx, t = y + +e.dataset.ny + (dy || 0);
+  return { left: l, top: t,
+           right: l + +e.dataset.nw, bottom: t + +e.dataset.nh };
+}
+
+function duoiBang(e, x, y, dy) {
+  if (!hopBang) return false;
+  var h = hopNhan(e, x, y, dy);
+  if (!h) return false;
+  var KHE = 6;
+  return !(h.right  <= hopBang.left   - KHE ||
+           h.left   >= hopBang.right  + KHE ||
+           h.bottom <= hopBang.top    - KHE ||
+           h.top    >= hopBang.bottom + KHE);
+}
+
+function batTheo() {
+  requestAnimationFrame(batTheo);
+  if (!kp || (!PK.length && !TI.length)) return;
+  var S = document.getElementById('vung'), L = document.getElementById('lop-nhan');
+  var bat = hienPK && kp.get('xml.scene') === 'tong-quan';
+  S.style.display = bat ? '' : 'none';
+  L.style.display = bat ? '' : 'none';
+
+  var r = document.getElementById('pano').getBoundingClientRect();
+  var sw = +kp.get('stagewidth') || r.width, sh = +kp.get('stageheight') || r.height;
+  var fx = r.width / sw, fy = r.height / sh;
+  var vv = huong(+kp.get('view.hlookat'), +kp.get('view.vlookat'));
+  doBang();
+
+  var canTro = [];   /* nhan phan khu: tien ich phai NE, phan khu khong bi day */
+  if (bat) L.querySelectorAll('.pk').forEach(function (e) {
+    var p = PK[+e.dataset.k];
+    if (!truocMat(vv, p.ath, p.atv)) { e.style.display = 'none'; return; }
+    var s = kp.spheretoscreen(p.ath, p.atv);
+    var x = s.x * fx, y = s.y * fy;
+    e.style.display = '';
+    e.style.left = x + 'px';
+    e.style.top = y + 'px';
+    /* 15/09: nhan chui duoi bang thi thu ve cham. Phai goi TRUOC khi do be
+       rong ben duoi, vi thu ve xong `.nhan` bi an -> offsetWidth = 0. */
+    var an = duoiBang(e, x, y);
+    e.classList.toggle('gon', an);
+    var nh = e.querySelector('.nhan');
+    /* Da thu ve cham thi vat can chi con be bang cai cham, dung lay 120
+       mac dinh - lay 120 la dung cho cua mot cai nhan khong con hien. */
+    var w = an ? 12 : ((nh ? nh.offsetWidth : 120) || 120);
+    /* nhan phan khu neo o -100% roi tut xuong het chieu cao cot (.duong 44 + .cham)
+       -> quy ve cung he quy chieu voi tien ich: lay tam nhan */
+    canTro.push({ x: x, y: y - (an ? 12 : 52), w: w, khoa: true });
+  });
+
+  var LT = document.getElementById('lop-ti');
+  var batTI = hienTI && kp.get('xml.scene') === 'tong-quan';
+  LT.style.display = batTI ? '' : 'none';
+  if (batTI) {
+    var hienTi = [];
+    LT.querySelectorAll('.ti').forEach(function (e) {
+      var p = TI[+e.dataset.k];
+      if (!p || tatNhom[p.nhom] || !truocMat(vv, p.ath, p.atv)) { e.style.display = 'none'; return; }
+      var s = kp.spheretoscreen(p.ath, p.atv);
+      var x = s.x * fx, y = s.y * fy;
+      e.style.display = '';
+      /* Gim gan mep man: nhan canh giua nen bi CAT (do 12/09: "Khu do thi
+         Phu My Hung" mat nua chu ben trai). Doi sang neo mep + keo vao trong. */
+      var nh = e.querySelector('.nhan');
+      /* Be rong that cua nhan, do MOI KHUNG khi dang hien du chu.
+         🔴 Khong duoc nho cung lan do dau tien: lan dau font chua ve xong,
+         offsetWidth ra 0 -> lay mac dinh 120 -> nhan rong 205px van bi coi
+         la hep -> "Khu thuong mai & van phong" de len "Cong chao" (do 12/09).
+         Dang 'gon' thi chu bi an, do ra ~25px nen giu lai so cu. */
+      if (!e.classList.contains('gon')) {
+        var ow = nh.offsetWidth;
+        if (ow > 40) e.dataset.w = ow;
+      }
+      var w = +e.dataset.w || 140;
+      if (x < w / 2 + 8)                { e.classList.add('trai');  e.classList.remove('phai'); }
+      else if (x > r.width - w / 2 - 8) { e.classList.add('phai');  e.classList.remove('trai'); }
+      else                              { e.classList.remove('trai', 'phai'); }
+      /* 🔴 Sua 14/09: truoc day KEP x vao trong man (`Math.max(8, Math.min(...))`)
+         cho nhan khoi bi cat. Nhung kep xong thi CHAM cung bi keo theo - do
+         duoc "Khu do thi Phu My Hung" lech 326px, no nam ngoai khung nhin ma
+         van bi dinh vao mep trai nhu the co that o do. Nay dat dung toa do;
+         gim nao ra ngoai khung thi khuat han, dung. Nhan sat mep da co
+         lop .trai/.phai keo vao trong roi. */
+      e.style.left = x + 'px';
+      e.style.top = y + 'px';
+      hienTi.push({ e: e, x: x, y: y, w: w });
+    });
+    /* Tien ich noi khu nam chum mot cho (do thay 12/09: 10 nhan trong
+       vung rong ~100px) -> nhan de len nhau, khong doc duoc chu nao.
+       Xep theo truc ngang roi nang nhan bi de len CAO them 1 bac,
+       dung cach da dung cho bieu tuong flycam ben tab Thuc te. */
+    /* 🔴 Do 12/09: hai lop ne chong RIENG RE nen khong thay nhau ->
+       "Cong chao Waterpoint" bi "Park Village" de, "Vinh Harbor" bi "The Pearl" de.
+       Phai xep CHUNG mot danh sach; nhan phan khu duoc khoa (khong bi day)
+       vi do la nhan vat chinh cua canh tong quan. */
+    canTro.forEach(function (c) { c.e = null; hienTi.push(c); });
+    hienTi.sort(function (a, b) { return a.x - b.x; });
+    /* 🔴 Nguong "gan nhau" phai tinh theo BE RONG THAT cua hai nhan, khong
+       duoc dat so co dinh: do 12/09 nhan "Tram thu phi Ben Luc" rong 158px
+       nen voi GAN=150 no bi coi la "xa" -> khong day -> van de len "Tram xe buyt". */
+    var BAC = 34, TRAN = -136;   /* cao nhan 25 + khe 9; toi da 4 bac */
+    for (var i = 0; i < hienTi.length; i++) {
+      if (hienTi[i].khoa) continue;          /* nhan phan khu: dung yen */
+      var dy = 0, cham = false;
+      for (var j = 0; j < i; j++) {
+        var dyj = hienTi[j].khoa ? 0 :
+                  +(hienTi[j].e.style.getPropertyValue('--dy') || '0').replace('px', '');
+        var gan = (hienTi[i].w + hienTi[j].w) / 2 + 24;
+        if (Math.abs(hienTi[i].x - hienTi[j].x) < gan &&
+            Math.abs((hienTi[i].y + dy) - (hienTi[j].y + dyj)) < BAC) { dy -= BAC; j = -1; }
+        /* Cham tran ma VAN con de len nhau -> ep ve 0 la hai cai cung nam mot
+           muc, de nhau y nhu cu (do thay 12/09: Tram thu phi de Tram xe buyt).
+           Nen phai thu ve cham, dung ep xuong. */
+        if (dy <= TRAN) { cham = true; break; }
+      }
+      /* Do that 12/09: 10 tien ich noi khu chum trong ~100px, xep het ra thi
+         co nhan bi day len -360px = cot leu ngheu, xau hon ca chong chu.
+         Qua 4 bac thi THU VE CHAM, nhan chi hien khi re/bam. Zoom vao la
+         cac gim tach ra, nhan tu hien lai. */
+      /* 15/09: chui duoi bang "Lop hien thi" cung la mot ly do thu ve cham,
+         ngang hang voi "day het tran ma van bi de". Xet o dung muc day `dy`
+         vua tinh ra, khong xet o cho cu. */
+      if (cham || duoiBang(hienTi[i].e, hienTi[i].x, hienTi[i].y, dy)) {
+        hienTi[i].e.classList.add('gon'); hienTi[i].gon = true; }
+      else { hienTi[i].e.classList.remove('gon'); hienTi[i].gon = false;
+             hienTi[i].e.style.setProperty('--dy', dy + 'px'); }
+    }
+
+    /* Lượt 2 — xếp riêng cho các gim đã thu về icon.
+       🔴 Do 12/09: cho chung dy=0 het thi 4 icon lai chum dung mot cho, de
+       len nhau y nhu luc con chu. Icon chi rong ~25px nen xep bac nho hon
+       (26px) va cho phep cao hon (6 bac) van gon. */
+    var gons = hienTi.filter(function (t) { return t.gon && t.e; });
+    var BAC2 = 26, TRAN2 = -156;
+    for (var a = 0; a < gons.length; a++) {
+      var dy2 = 0;
+      for (var b = 0; b < a; b++) {
+        var dyb = +(gons[b].e.style.getPropertyValue('--dy') || '0').replace('px', '');
+        if (Math.abs(gons[a].x - gons[b].x) < 34 &&
+            Math.abs((gons[a].y + dy2) - (gons[b].y + dyb)) < BAC2) { dy2 -= BAC2; b = -1; }
+        if (dy2 <= TRAN2) break;
+      }
+      gons[a].e.style.setProperty('--dy', Math.max(TRAN2, dy2) + 'px');
+    }
+  }
+
+  if (bat) S.querySelectorAll('polygon').forEach(function (g) {
+    var p = PK[+g.dataset.k], pts = [], ok = true;
+    for (var i = 0; i < p.vung.length; i++) {
+      if (!truocMat(vv, p.vung[i][0], p.vung[i][1])) { ok = false; break; }
+      var s = kp.spheretoscreen(p.vung[i][0], p.vung[i][1]);
+      pts.push((s.x * fx).toFixed(1) + ',' + (s.y * fy).toFixed(1));
+    }
+    if (!ok) { g.style.display = 'none'; return; }
+    g.style.display = '';
+    g.setAttribute('points', pts.join(' '));
+  });
+}
+
+function huong(ath, atv) {
+  var a = ath * Math.PI / 180, b = atv * Math.PI / 180;
+  return [Math.cos(b) * Math.sin(a), -Math.sin(b), Math.cos(b) * Math.cos(a)];
+}
+function truocMat(vv, ath, atv) {
+  var p = huong(ath, atv);
+  return (vv[0] * p[0] + vv[1] * p[1] + vv[2] * p[2]) > 0.09;
+}
+
+/* ---------------- Nút ---------------- */
+document.getElementById('mo-bang').onclick = function () {
+  document.documentElement.classList.toggle('mo-bang');
+};
+/* Bam ra ngoai thi dong bang - chi khi dang o che do nut (man hep/thap) */
+document.addEventListener('click', function (ev) {
+  if (!document.documentElement.classList.contains('mo-bang')) return;
+  /* 16/09: them #eraGlobe/#eraZoom — keo qua cau hay bam zoom ma bang tu dong
+     dong lai thi rat kho chiu, ma day la hai thao tac hay dung lien tay nhat. */
+  if (ev.target.closest('#bang') || ev.target.closest('#mo-bang') ||
+      ev.target.closest('#eraGlobe') || ev.target.closest('#eraZoom')) return;
+  document.documentElement.classList.remove('mo-bang');
+});
+document.getElementById('l-pk').onclick = function () { hienPK = !hienPK; dongBoBang(); };
+document.getElementById('l-ti').onclick = function () { hienTI = !hienTI; dongBoBang(); };
+</script>
+
+<!-- Thanh buoc dung chung cho ca 4 trang. Go 1 dong nay la ve nav cu. -->
+<!-- 🌐 Qua cau dieu huong + thanh zoom (Anh Tony 16/09: "them cong cu qua cau va
+     thanh zoom vao tat ca seen tuong tac 360 duoc"). Dung CHUNG mot file voi tab
+     Thuc te — sua mot cho la ca 4 trang doi theo.
+     ADDITIVE 100%: go 1 dong nay la trang ve y nhu cu, khong dung XML/skin/krpano.
+     File tu tim krpano qua bien toan cuc `kp` (trang nay co san).
+     ⚠️ Dat TRUOC era-buoc.js — ca hai deu chen <style> luc chay, cai SAU thang.
+        Hai file ghi de hai id khac nhau (#nav vs #ds) nen khong dam nhau, nhung
+        giu dung thu tu nhu ben tab Thuc te cho khoi phai nghi lai. -->
+<script src="../era-globe.js?nc=20260916"></script>
+<script src="../era-buoc.js?nc=20260915" data-buoc="tong-quan"></script>
+</body></html>

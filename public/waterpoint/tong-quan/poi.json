@@ -1,0 +1,203 @@
+{
+  "_nguon": "20 toa do doc tu krpano runtime tour CDT dang chay local :8082, scene_1__tt_ngay, ngay 12/09/2026 (XML cua ho ma hoa - lay qua API, muc 8.3-ter).",
+  "_vi_sao_cam_thang_duoc": "Canh 'tong-quan' cua minh dung DUNG bo anh do (pano/tt-ngay/pano_%s.jpg) nen ath/atv khop 1:1. Doi anh khac la lech het.",
+  "_ranh_gioi": "Chi lay TOA DO + TEN dia danh (du kien thuc dia). KHONG chep anh gim, anh tooltip, skin cua ho - gim ve lai bang SVG theo design system ERA (muc 8.1).",
+  "_can_xac_nhan": "Ten tieng Viet do Em Teo dat tu slug cua ho + dia-danh.json 10/09. Anh Tony doc lai truoc khi giao khach.",
+  "nhom": [
+    {
+      "id": "noi-khu",
+      "ten": "Trong khu đô thị"
+    },
+    {
+      "id": "ha-tang",
+      "ten": "Hạ tầng kết nối"
+    },
+    {
+      "id": "ngoai-khu",
+      "ten": "Tiện ích ngoại khu"
+    }
+  ],
+  "poi": [
+    {
+      "id": "country-club",
+      "ten": "Country Club",
+      "nhom": "noi-khu",
+      "ath": -18.53,
+      "atv": 16.72,
+      "_goc": "hostpot_country_club",
+      "icon": "golf"
+    },
+    {
+      "id": "central-park",
+      "ten": "Công viên trung tâm",
+      "nhom": "noi-khu",
+      "ath": -17.12,
+      "atv": 18.47,
+      "_goc": "hostpot_cong_vien_central_park",
+      "icon": "cay"
+    },
+    {
+      "id": "cong-chao",
+      "ten": "Cổng chào Waterpoint",
+      "nhom": "noi-khu",
+      "ath": -30.0416,
+      "atv": 14.7418,
+      "_goc": "hostpot_congchao",
+      "icon": "cong"
+    },
+    {
+      "id": "cam-trai",
+      "ten": "Khu cắm trại ngoài trời",
+      "nhom": "noi-khu",
+      "ath": -17.25,
+      "atv": 17.86,
+      "_goc": "hostpot_khu_cam_trai_ngoai_troi",
+      "icon": "leu"
+    },
+    {
+      "id": "thuong-mai-vp",
+      "ten": "Khu thương mại & văn phòng",
+      "nhom": "noi-khu",
+      "ath": -23.32,
+      "atv": 15.64,
+      "_goc": "hostpot_thuong_mai_van_phong",
+      "icon": "toanha"
+    },
+    {
+      "id": "khu-vui-choi",
+      "ten": "Khu vui chơi trẻ em",
+      "nhom": "noi-khu",
+      "ath": -19.83,
+      "atv": 17.99,
+      "_goc": "hostpot_khu_vui_choi",
+      "icon": "vuichoi"
+    },
+    {
+      "id": "lang-viet-nhat",
+      "ten": "Làng Việt – Nhật",
+      "nhom": "noi-khu",
+      "ath": -5.1,
+      "atv": 21.86,
+      "_goc": "hostpot_lang_viet_nhat",
+      "icon": "nha"
+    },
+    {
+      "id": "emasi-plus",
+      "ten": "Trường quốc tế EMASI Plus",
+      "nhom": "noi-khu",
+      "ath": -29.1899,
+      "atv": 20.548,
+      "_goc": "hostpot_truong_emasi_plus",
+      "icon": "hoc"
+    },
+    {
+      "id": "truong-lien-cap",
+      "ten": "Trường liên cấp",
+      "nhom": "noi-khu",
+      "ath": -8.17,
+      "atv": 18.17,
+      "_goc": "hostpot_truong_lien_cap",
+      "icon": "hoc"
+    },
+    {
+      "id": "vinh-harbor",
+      "ten": "Vịnh Harbor",
+      "nhom": "noi-khu",
+      "ath": 16.74,
+      "atv": 20.64,
+      "_goc": "hostpot_vinh_habor",
+      "icon": "thuyen"
+    },
+    {
+      "id": "tram-thu-phi",
+      "ten": "Trạm thu phí Bến Lức",
+      "nhom": "ha-tang",
+      "ath": -16.6221,
+      "atv": 5.8667,
+      "_goc": "hostpot_tramthuphi",
+      "icon": "duong"
+    },
+    {
+      "id": "tram-xe-bus",
+      "ten": "Trạm xe buýt",
+      "nhom": "ha-tang",
+      "ath": -26.43,
+      "atv": 15.72,
+      "_goc": "hostpot_tram_xe_bus",
+      "icon": "xebus"
+    },
+    {
+      "id": "benh-vien",
+      "ten": "Bệnh viện",
+      "nhom": "ngoai-khu",
+      "ath": -24.8041,
+      "atv": 12.7735,
+      "_goc": "hostpot_benh_vien",
+      "icon": "yte"
+    },
+    {
+      "id": "bv-nhi-dong",
+      "ten": "Bệnh viện Nhi Đồng",
+      "nhom": "ngoai-khu",
+      "ath": -96.8615,
+      "atv": 7.5441,
+      "_goc": "hostpot_benviennhidong",
+      "icon": "yte"
+    },
+    {
+      "id": "kcn-phu-an-thanh",
+      "ten": "KCN Phú An Thạnh",
+      "nhom": "ngoai-khu",
+      "ath": -111.4804,
+      "atv": 12.6272,
+      "_goc": "hostpot_khucnphuanthanh",
+      "icon": "nhamay"
+    },
+    {
+      "id": "kcn-thuan-dao",
+      "ten": "KCN Thuận Đạo",
+      "nhom": "ngoai-khu",
+      "ath": 15.601,
+      "atv": 5.0158,
+      "_goc": "hostpot_khucongnghiepthuandao",
+      "icon": "nhamay"
+    },
+    {
+      "id": "van-lai-vien",
+      "ten": "Khu vui chơi Vạn Lai Viên",
+      "nhom": "ngoai-khu",
+      "ath": -41.0,
+      "atv": 19.0,
+      "_goc": "hostpot_khuvuichoivanlaivien",
+      "icon": "vuichoi"
+    },
+    {
+      "id": "phu-my-hung",
+      "ten": "Khu đô thị Phú Mỹ Hưng",
+      "nhom": "ngoai-khu",
+      "ath": -52.8247,
+      "atv": 4.7281,
+      "_goc": "hostpot_khudothiphumyhung",
+      "icon": "toanha"
+    },
+    {
+      "id": "ttmt",
+      "ten": "Trung tâm thương mại",
+      "nhom": "ngoai-khu",
+      "ath": -26.8028,
+      "atv": 14.2288,
+      "_goc": "hostpot_trung_tam_thuong_mai",
+      "icon": "muasam"
+    },
+    {
+      "id": "truong-dai-hoc",
+      "ten": "Trường đại học",
+      "nhom": "ngoai-khu",
+      "ath": -25.4,
+      "atv": 17.73,
+      "_goc": "hostpot_truong_dai_hoc",
+      "icon": "hoc"
+    }
+  ],
+  "_icon": "Ten bo icon ERA tu ve bang SVG trong index.html (yte/muasam/hoc/xebus/duong/vuichoi/leu/golf/cay/nha/thuyen/cong/nhamay/toanha/cham). KHONG dung anh gim cua CDT - muc 8.1."
+}

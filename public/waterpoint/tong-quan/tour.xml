@@ -1,0 +1,72 @@
+<krpano version="1.19" title="Tổng quan khu đô thị - Waterpoint">
+
+<!-- ============================================================
+     LUONG 1 - TONG QUAN KHU DO THI
+
+     CANH 1 "tong-quan"  (MO DAU - co nhan 8 phan khu)
+       Anh : pano/tt-ngay/pano_%s.jpg - 6 mat cube 2048, SINGLE-RES
+       Vi sao dung anh nay: toa do 8 phan khu lay tu tour CDT deu do
+       tren DUNG BO ANH NAY. Doi anh khac la lech het, phai cham lai tay.
+
+     CANH 2 "toan-canh"  (bay thap, net hon - CHUA gan nhan)
+       Anh : pano/01-tong-quan-kdt/...  MULTIRES 12000x6000, 504 tile
+       Day la ban render CDT gui Anh Tony. Do voi canh FLY2 cua ho:
+       lech 0.00 do, tuong quan 0.914 -> cung mot ban render.
+       Toa do phan khu cua canh 1 KHONG dung duoc cho canh nay.
+
+     Engine krpano 1.19-pr16 - BAN DA MUA cua ERA.
+     KHONG dung tour.js cua MoonGroup (license ho - dieu 6).
+     ============================================================ -->
+
+<autorotate enabled="false" waittime="4.0" speed="2.5" horizon="0.0" />
+
+<!-- 12/09: LAM DIU MO MAN. Ban cu ha vlookat 78->22 KEM fov 145->76
+     trong 2.4s = vua chui dau vua zoom cung luc, 2 truc chuyen dong nguoi xem
+     khong dieu khien duoc -> Anh Tony say (dau ong ong, buon non).
+     Nay: chi ha goc nhin, KHONG zoom kem; xuat phat gan dich hon; cham hon
+     va easeInOutSine (khong giat dau/cuoi). fov dung yen o 100. -->
+<action name="mo_man">
+  set(view.vlookat, 46);
+  set(view.fov, 100);
+  tween(view.vlookat, 22.0, 3.2, easeInOutSine);
+</action>
+
+<!-- 12/09: giam quan tinh keo chuot (mac dinh 0.9 -> anh troi tiep sau khi tha tay) -->
+<control mousespeed="8.0" mousefriction="0.5" mouseaccelerate="1.0" />
+
+<action name="startup" autorun="onstart">
+  loadscene(get(scene[0].name), null, MERGE);
+</action>
+
+<!-- ====== CANH 1 - TONG QUAN + 8 PHAN KHU ====== -->
+<scene name="tong-quan" title="Tổng quan khu đô thị" onstart="mo_man();">
+  <view hlookat="13.85" vlookat="46.0" fov="100.0"
+        fovmin="65.0" fovmax="115.0" limitview="auto" maxpixelzoom="2.0" />
+  <preview url="pano/tt-ngay/preview.jpg" />
+  <image type="CUBE">
+    <cube url="pano/tt-ngay/pano_%s.jpg" />
+  </image>
+</scene>
+
+<!-- ====== CANH 2 - TOAN CANH BAY THAP (multires, chua gan nhan) ====== -->
+<scene name="toan-canh" title="Toàn cảnh" onstart="">
+  <view hlookat="0.0" vlookat="2.0" fov="100.0"
+        fovmin="40.0" fovmax="115.0" limitview="auto" maxpixelzoom="1.0" />
+  <preview url="pano/01-tong-quan-kdt/01-tong-quan-kdt.tiles/preview.jpg" />
+  <image type="CUBE" multires="true" tilesize="512">
+    <level tiledimagewidth="3840" tiledimageheight="3840">
+      <cube url="pano/01-tong-quan-kdt/01-tong-quan-kdt.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="1792" tiledimageheight="1792">
+      <cube url="pano/01-tong-quan-kdt/01-tong-quan-kdt.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="1024" tiledimageheight="1024">
+      <cube url="pano/01-tong-quan-kdt/01-tong-quan-kdt.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+    </level>
+  </image>
+</scene>
+
+<!-- Nhan + vung phan khu do index.html ve bang HTML/SVG, nap tu phan-khu.json.
+     Chi ve khi dang o canh "tong-quan". -->
+
+</krpano>

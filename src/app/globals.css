@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/* Design token cua site Waterpoint (dong bo voi cac trang krpano static
+   trong public/waterpoint): teal chu dao + vang dong ERA. */
+:root {
+  --wp-primary: #003c4b;
+  --wp-primary-hover: #006d88;
+  --wp-tint: #7fd3e3;
+  --wp-gold: #e0b14a;
+  --wp-canvas: #0a1214;
+  --wp-surface: #0a2a34;
+}
+
+@theme inline {
+  --color-wp-primary: var(--wp-primary);
+  --color-wp-primary-hover: var(--wp-primary-hover);
+  --color-wp-tint: var(--wp-tint);
+  --color-wp-gold: var(--wp-gold);
+  --color-wp-canvas: var(--wp-canvas);
+  --color-wp-surface: var(--wp-surface);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+}

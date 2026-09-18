@@ -1,0 +1,55 @@
+{
+  "_ghi_chu": "Anh Tony sua truc tiep file nay. Em Teo dien tam - PHAI XAC NHAN lai truoc khi giao khach.",
+  "du_an": "WATERPOINT",
+  "canh": "Tổng quan khu đô thị",
+  "thong_tin": [
+    {
+      "nhan": "Chủ đầu tư",
+      "gia_tri": "Nam Long Group",
+      "da_xac_nhan": false
+    },
+    {
+      "nhan": "Vị trí",
+      "gia_tri": "Bến Lức, Long An",
+      "da_xac_nhan": false
+    },
+    {
+      "nhan": "Quy mô",
+      "gia_tri": "355 ha",
+      "da_xac_nhan": false
+    },
+    {
+      "nhan": "Phân phối",
+      "gia_tri": "ERA Vietnam — độc quyền Aqua & Park Village",
+      "da_xac_nhan": true
+    }
+  ],
+  "buoc": [
+    {
+      "id": "tong-quan",
+      "ten": "Tổng quan",
+      "bat": true,
+      "link": ""
+    },
+    {
+      "id": "thuc-te",
+      "ten": "Thực tế",
+      "bat": true,
+      "link": "../index.html"
+    },
+    {
+      "id": "gio-hang",
+      "ten": "Giỏ hàng",
+      "bat": true,
+      "link": "../giohang/index.html"
+    },
+    {
+      "id": "tien-ich",
+      "ten": "Tiện ích",
+      "bat": true,
+      "link": "../tienich/index.html"
+    }
+  ],
+  "_ghi_chu_buoc": "12/09: bo 'tien-ich' (20 gim da ghep vao chinh trang nay) va 'phan-khu' (8 phan khu cung da co san day). 12/09 toi: BAT 'gio-hang' - anh canh5 nhin thang xuong, gim lo lam sau. 15/09: BAT LAI 'tien-ich' nhung la MOT TRANG RIENG (wp-thuc-te/tienich/) tren anh phoi canh 3D toan khu 12000x6000, 32 gim doc tu anh 'He sinh thai Tien ich' cua CDT - KHAC han 20 gim tien ich dang nam trong trang nay (khac anh, khac toa do, khac danh sach).",
+  "_ghi_chu_nav": "🔴 Nav 4 tab dang HARD-CODE roi rac o 4 CHO: file nay (tong-quan) · ../index.html (Thuc te) · ../giohang/index.html · ../tienich/index.html. Them/bo tab la phai sua DU 4, khong thi tab nay hien ma tab kia khong."
+}

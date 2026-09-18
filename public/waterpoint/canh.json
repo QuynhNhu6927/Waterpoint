@@ -1,0 +1,128 @@
+{
+  "_nguon": "canh1..canh5: toa do TINH BANG MAY tu EXIF GPS + RelativeAltitude + GimbalYawDegree (DJI FC3170, bay 08/09/2026). canh6, canh7: anh da bi nen lai, MAT GPS -> phai cham tay. canh8: MAT GPS nhung SUY RA duoc, xem _park_village.",
+  "_park_village": "🟢 canh8 KHONG co GPS trong EXIF (cung lo anh bi nen lai nhu canh6/canh7) NHUNG VAN BIET VI TRI BAY. Ly do: drone bay NGAY TREN khu Park Village - do goc nadir thi cum oval lech tam chi ~10 px/1280, o cao 360 m tuc ~8,5 m mat dat. => GPS canh8 ~ GPS gim 'pk-park-village' trong gim-tong-quan.json = 10.658954,106.453683 (gim do lay bang TAM GIAC DAC 2 lan Anh Tony cham tay, goc giao 67,3 do). ✅ DA KIEM CHEO: bearing may tinh tu GPS nay, so voi 3 gim Anh cham tay doc lap (canh1 · canh2 · canh5) -> lech 0,0° · 0,0° · 0,2°. ⇒ 🔴 CON SO NAY DUNG DUOC cho viec tu dien 13 gim tong quan o canh8 (viec cua phien chat-gps-poi) - khoi phai cham tay 13 o.",
+  "_nguon_diem": "🔴 '_nguon' trong tung diem: 'tay' = CHEP tu gim 'pk-park-village' Anh Tony da cham tay o canh do (huong ngang da kiem khop 0,0° voi may, goc doc BAM MAT DAT = dung y Anh chot 12/09). 'may' = tinh bang cong thuc GPS, TRO VAO CHO DRONE LO LUNG chu khong bam mat dat. Khong co '_nguon' = so cu, chua phan loai. Truong nay chi la chu thich, code khong doc.",
+  "_ten_scene": "🔴 Ten scene PHAI bat dau bang chu cai. Dat '01-...' thi krpano hieu la bieu thuc so hoc, vut ten di, tra ve null -> man den (loi 10/09/2026).",
+  "_cach_doc": "diem[] = bieu tuong flycam gim trong canh nay, tro sang canh khac. ath/atv = null nghia la CHUA CHAM.",
+  "_chot_bo_qua_12_o_null": "🔴🔴 ANH TONY CHOT 16/09 TOI: 'bo qua luon. ko co thi tu bam vao menu'. => 12 o con 'ath': null la CO Y, KHONG PHAI VIEC CON TREO, KHONG PHAI LOI. Khach khong thay icon bay thi bam DAI NUT o duoi man hinh - van di duoc du 6 canh, khong ai bi ket. 🔴 PHIEN SAU DUNG TU DI CHAM BU hay tu tinh bang may cho 'day du' - da hoi va da chot bo. Chi lam neu chinh Anh Tony yeu cau lai. Boi canh: ca 12 o deu dinh canh6_rivera hoac canh7_the_pearl - hai anh do bi nen lai nen MAT GPS trong EXIF; da thu tam giac dac tu canh1 + canh8 nhung GOC GIAO chi 6,8 do (Rivera) va 20,1 do (The Pearl), qua hep, khong tin duoc (nguong dung duoc la >=30 do; gim phan khu lam duoc vi co goc giao 34,8 va 67,3 do). Muon lam thi phai cham tay 2 o o canh5_aquaria_song_vam_co truoc - do la cho duy nhat cho goc giao tot (46-80 do). Do het roi, khoi do lai.",
+  "_lech": "Neu ca canh lech dong loat mot goc thi sua 'lech' (do) cua canh do, KHONG sua tung ath.",
+  "_thu_tu": "🔴 THU TU CAC MUC TRONG 'canh' CHINH LA THU TU NUT o dai duoi (ham veDS() duyet theo mang nay). Anh Tony chot 16/09: Flycam tong quan -> Truc duong vao -> PK The Aqua -> PK Park Village -> PK Rivera -> PK The Pearl. (15/09 chua co Park Village; them vao giua Aqua va Rivera dung nhu Anh liet ke.) Muon doi thu tu thi DOI CHO CAC KHOI o day, khong phai sua code. Hai canh 'an': true xep cuoi cho de doc.",
+  "_an": "an: true -> an han khoi tour (mat nut o dai duoi + mat gim flycam tro sang no), VAN giu nguyen anh 360 trong pano/. Bo chu do di la hien lai ngay.",
+  "_gim_gon": "gim_gon: true -> cac diem bay trong canh do CHI CON ICON FLYCAM, an het nhan (re chuot vao moi bung chu ra). Anh Tony chot 15/09 cho canh2.",
+  "_tong_quan": "tong_quan: true -> canh do bat them lop gim 'xem tong quan phan khu' doc tu gim-tong-quan.json (phan khu · duong chinh · tien ich ngoai khu). Bo chu do di la tat ngay, khong phai sua code.",
+  "canh": [
+    {
+      "id": "canh2_vong_xoay_loi_vao", "ten": "Flycam tổng quan", "cao_m": 259.3, "lech": 0.0,
+      "tong_quan": true, "gim_gon": true,
+      "_gps": "10.661291,106.464452", "_yaw": -130.4, "_bay_luc": "08/09 15:49",
+      "diem": [
+        { "toi": "canh1_truc_duong_vao",     "ten": "Trục đường vào",        "ath": 0.4,    "atv": 21.8,  "xa_m": 414 },
+        { "toi": "canh3_ho_canh_quan",       "ten": "Vịnh nước ngọt",          "ath": 5.6,    "atv": -3.5,  "xa_m": 2160 },
+        { "toi": "canh4_toan_canh_aquaria",  "ten": "PK The Aqua (toàn cảnh)",     "ath": 2.9,    "atv": -4.1,  "xa_m": 1817 },
+        { "toi": "canh5_aquaria_song_vam_co","ten": "PK The Aqua", "ath": 5.7,    "atv": -4.7,  "xa_m": 1838 },
+        { "toi": "canh8_park_village",      "ten": "PK Park Village",                "ath": 28.1, "atv": 13.6, "xa_m": 1205, "_nguon": "tay" },
+        { "toi": "canh6_rivera",             "ten": "PK Rivera",                "ath": null,   "atv": null,  "xa_m": null },
+        { "toi": "canh7_the_pearl",          "ten": "PK The Pearl",             "ath": null,   "atv": null,  "xa_m": null }
+      ]
+    },
+    {
+      "id": "canh1_truc_duong_vao", "ten": "Trục đường vào", "cao_m": 93.7, "lech": 0.0,
+      "tong_quan": true,
+      "_gps": "10.658900,106.461552", "_yaw": -41.8, "_bay_luc": "08/09 15:57",
+      "diem": [
+        { "toi": "canh2_vong_xoay_loi_vao",  "ten": "Flycam tổng quan",     "ath": 96.6,    "atv": 5.6,    "xa_m": 414 },
+        { "toi": "canh3_ho_canh_quan",       "ten": "Vịnh nước ngọt",          "ath": -22.1,   "atv": 7.8,    "xa_m": 1748 },
+        { "toi": "canh4_toan_canh_aquaria",  "ten": "PK The Aqua (toàn cảnh)",     "ath": -80.7,   "atv": 1.8,    "xa_m": 1404 },
+        { "toi": "canh5_aquaria_song_vam_co","ten": "PK The Aqua", "ath": -84.5,   "atv": -5.2,   "xa_m": 1427 },
+        { "toi": "canh8_park_village",      "ten": "PK Park Village",                "ath": -47.8, "atv": 5.6, "xa_m": 860, "_nguon": "tay" },
+        { "toi": "canh6_rivera",             "ten": "PK Rivera",                "ath": -37.7,   "atv": -0.9,   "xa_m": null },
+        { "toi": "canh7_the_pearl",          "ten": "PK The Pearl",             "ath": -55.0,   "atv": 1.5,    "xa_m": null }
+      ]
+    },
+    {
+      "id": "canh5_aquaria_song_vam_co", "ten": "PK The Aqua", "cao_m": 409.8, "lech": 0.0,
+      "tong_quan": true,
+      "_gps": "10.651890,106.450617", "_yaw": 172.3, "_bay_luc": "08/09 14:45",
+      "diem": [
+        { "toi": "canh1_truc_duong_vao",     "ten": "Trục đường vào",        "ath": -115.4, "atv": 12.5,  "xa_m": 1427 },
+        { "toi": "canh2_vong_xoay_loi_vao",  "ten": "Flycam tổng quan",     "ath": -117.0, "atv": 4.7,   "xa_m": 1838 },
+        { "toi": "canh3_ho_canh_quan",       "ten": "Vịnh nước ngọt",          "ath": 62.2,   "atv": 3.4,   "xa_m": 322 },
+        { "toi": "canh4_toan_canh_aquaria",  "ten": "PK The Aqua (toàn cảnh)",     "ath": -41.2,  "atv": 11.8,  "xa_m": 94 },
+        { "toi": "canh8_park_village",      "ten": "PK Park Village",                "ath": -149.2, "atv": 27.4, "xa_m": 854, "_nguon": "tay" },
+        { "toi": "canh6_rivera",             "ten": "PK Rivera",                "ath": null,   "atv": null,  "xa_m": null },
+        { "toi": "canh7_the_pearl",          "ten": "PK The Pearl",             "ath": null,   "atv": null,  "xa_m": null }
+      ]
+    },
+    {
+      "id": "canh8_park_village", "ten": "PK Park Village", "cao_m": 360.2, "lech": 0.0,
+      "tong_quan": true,
+      "_gps": "10.658954,106.453683", "_yaw": -63.3, "_bay_luc": "05/09 11:46",
+      "_gps_suy_ra": "🔴 GPS o tren la SUY RA, khong doc duoc tu EXIF (anh bi nen lai). Cach suy + bang kiem cheo: xem _park_village o dau file. Da kiem lech 0,0-0,2 do nen dung duoc.",
+      "_gps_dung_chuoi_sach": "🔴🔴 KHONG duoc viet chu giai thich vao chinh truong '_gps'. Ham gpsCanh() ben index.html chi lam DUNG MOT phep: co dau ',' VA khong chua chu 'KHONG'. Ban dau da viet '10.658954,106.453683 - SUY RA, KHONG co trong EXIF' -> chinh chu 'KHONG' trong loi giai thich lam canh nay bi doc thanh MAT GPS. Chu giai de o khoa rieng nhu duoi day.",
+      "_tong_quan_moi_bat": "Bat 'tong_quan': true ngay 16/09 de Anh Tony cham 13 gim cho canh nay qua ?tool=1. Luc moi bat thi ca 13 gim deu o trang thai '+ teal = chua co' - DUNG nhu vay, khong phai loi.",
+      "diem": [
+        { "toi": "canh1_truc_duong_vao",     "ten": "Trục đường vào",          "ath": 153.7, "atv": 17.2, "xa_m": 860, "_nguon": "may" },
+        { "toi": "canh2_vong_xoay_loi_vao",  "ten": "Flycam tổng quan",        "ath": 140.8, "atv": 4.8, "xa_m": 1205, "_nguon": "may" },
+        { "toi": "canh3_ho_canh_quan",       "ten": "Vịnh nước ngọt",          "ath": -85.1, "atv": -1.5, "xa_m": 1141, "_nguon": "may" },
+        { "toi": "canh4_toan_canh_aquaria",  "ten": "PK The Aqua (toàn cảnh)", "ath": -99.4, "atv": -1.9, "xa_m": 888, "_nguon": "may" },
+        { "toi": "canh5_aquaria_song_vam_co","ten": "PK The Aqua",             "ath": -93.6, "atv": -3.3, "xa_m": 854, "_nguon": "may" },
+        { "toi": "canh6_rivera",             "ten": "PK Rivera",               "ath": -23.0, "atv": 15.4, "xa_m": null, "_nguon": "tay" },
+        { "toi": "canh7_the_pearl",          "ten": "PK The Pearl",            "ath": -53.6, "atv": 5.3, "xa_m": null, "_nguon": "tay" }
+      ]
+    },
+    {
+      "id": "canh6_rivera", "ten": "PK Rivera", "cao_m": 399.5, "lech": 0.0,
+      "tong_quan": true,
+      "_gps": "KHONG CO - anh da bi nen lai, mat the GPS", "_yaw": 125.2, "_bay_luc": "05/09",
+      "diem": [
+        { "toi": "canh1_truc_duong_vao",     "ten": "Trục đường vào",        "ath": null, "atv": null, "xa_m": null },
+        { "toi": "canh2_vong_xoay_loi_vao",  "ten": "Flycam tổng quan",     "ath": null, "atv": null, "xa_m": null },
+        { "toi": "canh3_ho_canh_quan",       "ten": "Vịnh nước ngọt",          "ath": null, "atv": null, "xa_m": null },
+        { "toi": "canh4_toan_canh_aquaria",  "ten": "PK The Aqua (toàn cảnh)",     "ath": null, "atv": null, "xa_m": null },
+        { "toi": "canh5_aquaria_song_vam_co","ten": "PK The Aqua", "ath": null, "atv": null, "xa_m": null },
+        { "toi": "canh8_park_village",      "ten": "PK Park Village",                "ath": -38.4, "atv": 35.6, "xa_m": null, "_nguon": "tay" },
+        { "toi": "canh7_the_pearl",          "ten": "PK The Pearl",             "ath": null, "atv": null, "xa_m": null }
+      ]
+    },
+    {
+      "id": "canh7_the_pearl", "ten": "PK The Pearl", "cao_m": 498.8, "lech": 0.0,
+      "tong_quan": true,
+      "_gps": "KHONG CO - anh da bi nen lai, mat the GPS", "_yaw": 126.9, "_bay_luc": "05/09",
+      "diem": [
+        { "toi": "canh1_truc_duong_vao",     "ten": "Trục đường vào",        "ath": null, "atv": null, "xa_m": null },
+        { "toi": "canh2_vong_xoay_loi_vao",  "ten": "Flycam tổng quan",     "ath": null, "atv": null, "xa_m": null },
+        { "toi": "canh3_ho_canh_quan",       "ten": "Vịnh nước ngọt",          "ath": null, "atv": null, "xa_m": null },
+        { "toi": "canh4_toan_canh_aquaria",  "ten": "PK The Aqua (toàn cảnh)",     "ath": null, "atv": null, "xa_m": null },
+        { "toi": "canh5_aquaria_song_vam_co","ten": "PK The Aqua", "ath": null, "atv": null, "xa_m": null },
+        { "toi": "canh6_rivera",             "ten": "PK Rivera",                "ath": null, "atv": null, "xa_m": null },
+        { "toi": "canh8_park_village",      "ten": "PK Park Village",                "ath": -63.3, "atv": 26.2, "xa_m": null, "_nguon": "tay" }
+      ]
+    },
+    {
+      "id": "canh3_ho_canh_quan", "an": true, "ten": "Vịnh nước ngọt", "cao_m": 390.7, "lech": 0.0,
+      "_gps": "10.650209,106.448218", "_yaw": -96.3, "_bay_luc": "08/09 14:34",
+      "diem": [
+        { "toi": "canh1_truc_duong_vao",     "ten": "Trục đường vào",        "ath": 152.7,  "atv": 9.6,   "xa_m": 1748 },
+        { "toi": "canh2_vong_xoay_loi_vao",  "ten": "Flycam tổng quan",     "ath": 151.5,  "atv": 3.5,   "xa_m": 2160 },
+        { "toi": "canh4_toan_canh_aquaria",  "ten": "PK The Aqua (toàn cảnh)",     "ath": 165.7,  "atv": 0.1,   "xa_m": 356 },
+        { "toi": "canh5_aquaria_song_vam_co","ten": "PK The Aqua", "ath": 150.8,  "atv": -3.4,  "xa_m": 322 },
+        { "toi": "canh8_park_village",      "ten": "PK Park Village",                "ath": 127.9, "atv": 1.5, "xa_m": 1141, "_nguon": "may" },
+        { "toi": "canh6_rivera",             "ten": "PK Rivera",                "ath": null,   "atv": null,  "xa_m": null },
+        { "toi": "canh7_the_pearl",          "ten": "PK The Pearl",             "ath": null,   "atv": null,  "xa_m": null }
+      ]
+    },
+    {
+      "id": "canh4_toan_canh_aquaria", "an": true, "ten": "PK The Aqua (toàn cảnh)", "cao_m": 390.1, "lech": 0.0,
+      "_gps": "10.651334,106.451266", "_yaw": -8.2, "_bay_luc": "08/09 14:40",
+      "diem": [
+        { "toi": "canh1_truc_duong_vao",     "ten": "Trục đường vào",        "ath": 61.4,   "atv": 11.9,  "xa_m": 1404 },
+        { "toi": "canh2_vong_xoay_loi_vao",  "ten": "Flycam tổng quan",     "ath": 60.7,   "atv": 4.1,   "xa_m": 1817 },
+        { "toi": "canh3_ho_canh_quan",       "ten": "Vịnh nước ngọt",          "ath": -102.4, "atv": -0.1,  "xa_m": 356 },
+        { "toi": "canh5_aquaria_song_vam_co","ten": "PK The Aqua", "ath": -40.7,  "atv": -11.8, "xa_m": 94 },
+        { "toi": "canh8_park_village",      "ten": "PK Park Village",                "ath": 25.5, "atv": 1.9, "xa_m": 888, "_nguon": "may" },
+        { "toi": "canh6_rivera",             "ten": "PK Rivera",                "ath": null,   "atv": null,  "xa_m": null },
+        { "toi": "canh7_the_pearl",          "ten": "PK The Pearl",             "ath": null,   "atv": null,  "xa_m": null }
+      ]
+    }
+  ]
+}

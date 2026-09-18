@@ -1,0 +1,64 @@
+<krpano version="1.19" title="Hệ sinh thái tiện ích - Waterpoint">
+
+<!-- ============================================================
+     TAB 4 - HE SINH THAI TIEN ICH
+
+     CANH DUY NHAT "tien-ich"
+       Anh : ../tong-quan/pano/01-tong-quan-kdt/...  MULTIRES 12000x6000
+
+     🔴 ANH DUNG CHUNG, KHONG CHEP LAI.
+        Nguon goc: 02-NGUON/anh-360/waterpoint/1-tong-the/
+                   "WTP - hinh phoi canh 3d toan khu.png"  (12000x6000)
+        Do pixel 15/09: chenh lech trung binh 0.04/255 so voi
+        tong-quan/pano/01-tong-quan-kdt.jpg  =>  CUNG MOT FILE.
+        Tile da cat san 504 cai, 3 level. Tro sang thu muc do bang
+        duong dan tuong doi "../tong-quan/..." de khoi nhan doi 21 MB.
+     ⚠️ HE QUA: XOA hay DOI TEN thu muc tong-quan/pano la TRANG NAY DEN.
+        Dong goi deploy phai mang theo ca hai thu muc.
+
+     🔴 TOA DO GIM: gim tien ich ve bang HTML/SVG trong index.html, nap tu
+        tien-ich.json - KHONG phai hotspot krpano. Toa do ath/atv cua file
+        do do tren DUNG BO ANH NAY. Toa do trong tong-quan/poi.json do tren
+        anh KHAC (pano/tt-ngay/) nen KHONG cam sang day duoc - chinh
+        tong-quan/tour.xml da ghi "Toa do phan khu cua canh 1 KHONG dung
+        duoc cho canh nay".
+
+     Engine krpano 1.19-pr16 - BAN DA MUA cua ERA.
+     ============================================================ -->
+
+<autorotate enabled="false" waittime="4.0" speed="2.5" horizon="0.0" />
+
+<!-- Mo man diu, theo bai hoc 12/09 (Anh Tony say xe):
+     CHI ha goc nhin, KHONG zoom kem. Hai truc chuyen dong cung luc la chong mat.
+     fov dung yen o 100 suot hoat canh. -->
+<action name="mo_man">
+  set(view.vlookat, 26);
+  set(view.fov, 100);
+  tween(view.vlookat, 2.0, 3.2, easeInOutSine);
+</action>
+
+<!-- 12/09: giam quan tinh keo chuot (mac dinh 0.9 -> anh troi tiep sau khi tha tay) -->
+<control mousespeed="8.0" mousefriction="0.5" mouseaccelerate="1.0" />
+
+<action name="startup" autorun="onstart">
+  loadscene(get(scene[0].name), null, MERGE);
+</action>
+
+<scene name="tien-ich" title="Hệ sinh thái tiện ích" onstart="mo_man();">
+  <view hlookat="0.0" vlookat="2.0" fov="100.0"
+        fovmin="40.0" fovmax="115.0" limitview="auto" maxpixelzoom="1.0" />
+  <preview url="../tong-quan/pano/01-tong-quan-kdt/01-tong-quan-kdt.tiles/preview.jpg" />
+  <image type="CUBE" multires="true" tilesize="512">
+    <level tiledimagewidth="3840" tiledimageheight="3840">
+      <cube url="../tong-quan/pano/01-tong-quan-kdt/01-tong-quan-kdt.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="1792" tiledimageheight="1792">
+      <cube url="../tong-quan/pano/01-tong-quan-kdt/01-tong-quan-kdt.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="1024" tiledimageheight="1024">
+      <cube url="../tong-quan/pano/01-tong-quan-kdt/01-tong-quan-kdt.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+    </level>
+  </image>
+</scene>
+
+</krpano>

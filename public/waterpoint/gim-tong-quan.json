@@ -1,0 +1,1182 @@
+{
+  "_LUAT_SO_1": "🔴🔴 TOA DO ANH TONY CHAM TAY LUON THANG SO MAY. Anh chot 16/09: \"anh dung o goc do GOC NHIN, anh cham cho em roi thi em ko uu tien vi tri cham cua anh, gps la uu tien sau\". Moi vong tinh lai bang may PHAI BO QUA o co nguon==\"tay\" - khong bao gio de len, ke ca khi may tinh ra con so \"chuan hon ve mat toan\". May chi duoc LAP O TRONG. Ly do sau xa: phan khu la mot VUNG rong vai tram met chu khong phai mot diem - do duoc 16/09, tinh nguoc vi tri canh6 tu 9 tia Anh cham cho sai so 7.4 do / tan 150m, KHONG phai toan sai ma vi nhin tu moi canh Anh cham vao mot cho khac nhau trong cung vung do, va the la dung. Cham tay xong thi nguon thanh \"tay\" va XOA sai_do/_may_bo_vi (hai khoa do chi co nghia voi so may). Cam du lieu xong phai DOI CHIEU lai toan bo o \"tay\" voi ban XUAT roi moi coi la xong.",
+  "_viec": "Lop gim 'xem tong quan phan khu' cam tren anh flycam THUC TE cua canh2_vong_xoay_loi_vao (Anh Tony giao 15/09/2026).",
+  "_canh": "canh2_vong_xoay_loi_vao — canh nao co \"tong_quan\": true trong canh.json thi lop nay hien o do.",
+  "_nguon": "Danh sach TEN lay tu tong-quan/phan-khu.json (8 phan khu) + tong-quan/poi.json (nhom ngoai-khu 8 + ha-tang 2). Da LOC BO 10 tien ich nhom 'noi-khu' — chung thuoc trang Tong quan 3D, Anh Tony chi yeu cau phan khu + duong chinh + tien ich NGOAI KHU chinh.",
+  "_toa_do": "🔴 ath/atv = null nghia la CHUA CHAM. KHONG duoc chep toa do tu phan-khu.json / poi.json sang day: hai file do do tren anh 'pano/tt-ngay/' cua tour CDT (mot vi tri bay khac han), cam thang sang anh canh2 la lech het. Phai cham tay bang ?tool=1.",
+  "_ten": "🔴 ANH TONY CHOT 15/09: CA 8 PHAN KHU DEU MANG TIEN TO 'PK '. 3 cai doi 14/09 (Aquaria -> PK The Aqua · Rivera -> PK Rivera · The Pearl -> PK The Pearl), 5 cai con lai them tien to 15/09 (Park Village · Solaria · Solaria Rise · The Marina · Ehome Southgate). Day la NHAN KHACH THAY tren anh flycam — dung 'don' cho gon. 🔴 Cung ngay do Anh Tony chot NGUOC LAI cho trang Tong quan: 'tong-quan/phan-khu.json' GIU NGUYEN ten goc CDT (Aquaria · Rivera · The Pearl · Solaria · The Marina...), KHONG them 'PK ', vi trang do la ban THAM KHAO theo tour chu dau tu. ⇒ HAI TRANG GOI KHAC TEN NHAU LA CO Y, KHONG PHAI LOI — dung 'dong bo' cho khop.",
+  "_ban": 14,
+  "_ban_ghi_chu": "🔴 SO BAN DU LIEU — chong bay 'nhap cu trong trinh duyet ghi de nguoc len toa do vua cam' (bat duoc 15/09 o tab Tien ich). MOI LAN CAM TOA DO / DOI TEN / THEM-BOT DIEM trong file nay thi PHAI TANG _ban LEN 1. index.html luu so ban kem nhap localStorage 'wp_thucte_gim_tq'; lech ban => BO HAN NHAP. Quen tang la nhap cu dat nguoc toa do ve null, FILE VAN DUNG nen rat kho mo ra.",
+  "_duong": "Nhom 'duong' — Em Teo KHONG bia ten duong, Anh Tony tu them ngay tren man hinh (?tool=1 -> o 'Duong chinh' -> THEM DIEM -> go ten -> bam len anh). 15/09 Anh them 1 tuyen: Cao toc TP.HCM – Trung Luong. Them nua thi lam y het vay.",
+  "_cam_15_09": "🔴 CAM 13 TOA DO Anh Tony cham 15/09/2026 (ban XUAT, luu o 01-CONG-CU/kiem-gim-tour360/_tam/xuat-20260915.json): 8/8 PHAN KHU du · 1 duong (tu them) · 4/10 ngoai khu (tram-thu-phi, tram-xe-bus, kcn-phu-an-thanh, kcn-thuan-dao). CON 6 DIEM ath/atv=null — xem khoa '_con_lai'. Vi cam toa do nen _ban 1 -> 2.",
+  "_cham_lai_15_09": "🔴 Anh Tony CHAM LAI 2 diem chieu 15/09 (ban XUAT thu 2, luu o 01-CONG-CU/kiem-gim-tour360/_tam/xuat-20260915b.json): PK The Marina 14.6,5.4 -> 11.3,5.5 · PK Solaria 28.6,10.6 -> 36.1,12.4. Da DOI CHIEU ca 13 diem voi ban gui: DUNG 2 diem nay doi, 11 diem kia y nguyen. Vi cam toa do nen _ban 3 -> 4.",
+  "_nhap_cu_con_song": "⚠️ Ban XUAT lan 2 van mang id nhap cu 'them-1789465665721' cho tuyen cao toc (file da doi thanh 'duong-cao-toc-trung-luong' tu lan truoc, toa do GIONG HET -102.2/10.2 nen khong phai sua gi). Nghia la phep chan nhap-cu bang '_ban' CHUA THAT SU CHAN DUOC o may Anh Tony - nhieu kha nang trinh duyet dang dung ban gim-tong-quan.json CU trong bo nho dem (loi fetch khong co chuoi chong dem). Lan sau cham diem: bam Ctrl+F5 truoc, hoac them '?nc=' vao loi fetch trong index.html.",
+  "_con_lai": "🔴 ANH TONY CHOT 15/09: BO HAN 6 tien ich ngoai khu KHONG NHIN THAY tren anh flycam canh2 — Khu do thi Phu My Hung · Benh vien · Benh vien Nhi Dong · Truong dai hoc · Trung tam thuong mai · Khu vui choi Van Lai Vien. Ly do: khong thay tren anh thi de lai chi lam roi bang tool. 🟢 MUON LAY LAI thi chep dong tuong ung tu '_da_bo_ngoai_khu' vao mang 'gim' RỒI TANG _ban. Ten + icon + khoa _tq deu con nguyen o do, khong phai tra lai tong-quan/poi.json. Nay moi gim trong file DEU DA CO TOA DO — khong con diem null nao.",
+  "_doi_id": "Diem Anh Tony tu them mang id nhap 'them-<dau-thoi-gian>'. Khi cam vao file thi DOI sang id doc duoc (them-1789465665721 -> duong-cao-toc-trung-luong) va BO co 'them'. 🔴 Doi id chi AN TOAN vi da TANG _ban — nhap cu bi bo han nen khong con doi chieu theo id nua. Neu quen tang _ban thi doi id = diem bi NHAN DOI im lang (bay 15/09 tab Tien ich).",
+  "_ten_tu_them": "Ten Anh Tony go tren man hinh: 'Cao tốc tp HCM - TRUNG LƯƠNG'. Em Teo chuan hoa chinh ta thanh 'Cao tốc TP.HCM – Trung Lương' (day la NHAN KHACH THAY). Muon giu nguyen van Anh go thi sua lai khoa 'ten', khong anh huong gi khac.",
+  "_luat_mau": "era=true -> nhan VANG (phan khu ERA doc quyen). era=false -> nhan TRANG. Tien ich + duong -> nhan TEAL co o icon trang. Khong them mau moi (luat 2 design system).",
+  "nhom": [
+    {
+      "id": "phan-khu",
+      "ten": "Phân khu"
+    },
+    {
+      "id": "duong",
+      "ten": "Đường chính"
+    },
+    {
+      "id": "ngoai-khu",
+      "ten": "Tiện ích ngoại khu"
+    },
+    {
+      "id": "noi-khu",
+      "ten": "Tiện ích trong khu đô thị"
+    }
+  ],
+  "gim": [
+    {
+      "id": "pk-the-aqua",
+      "ten": "PK The Aqua",
+      "nhom": "phan-khu",
+      "era": true,
+      "_tq": "aquaria",
+      "gps": [
+        10.652471,
+        106.450876
+      ],
+      "_gps_tu": "TAM GIAC DAC tu 2 lan Anh Tony cham tay (canh1_truc_duong_vao x canh5_aquaria_song_vam_co), goc giao 34.8 do. Chinh xac hon han ban suy tu 1 lan cham + gia dinh mat dat phang.",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": 6.5,
+          "atv": 8.5,
+          "nguon": "tay"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": -79.7,
+          "atv": 2.3,
+          "nguon": "tay"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": 31.4,
+          "atv": 78,
+          "nguon": "tay"
+        },
+        "canh6_rivera": {
+          "ath": 33.1,
+          "atv": 25.8,
+          "nguon": "tay"
+        },
+        "canh7_the_pearl": {
+          "ath": -5.9,
+          "atv": 35.2,
+          "nguon": "tay"
+        },
+        "canh8_park_village": {
+          "ath": -107.7,
+          "atv": 23,
+          "nguon": "tay"
+        }
+      }
+    },
+    {
+      "id": "pk-park-village",
+      "ten": "PK Park Village",
+      "nhom": "phan-khu",
+      "era": true,
+      "_tq": "park-village",
+      "gps": [
+        10.658954,
+        106.453683
+      ],
+      "_gps_tu": "TAM GIAC DAC tu 2 lan Anh Tony cham tay (canh1_truc_duong_vao x canh5_aquaria_song_vam_co), goc giao 67.3 do. Chinh xac hon han ban suy tu 1 lan cham + gia dinh mat dat phang.",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": 28.1,
+          "atv": 13.6,
+          "nguon": "tay"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": -47.8,
+          "atv": 5.6,
+          "nguon": "tay"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": -149.2,
+          "atv": 27.4,
+          "nguon": "tay"
+        },
+        "canh6_rivera": {
+          "ath": -38.4,
+          "atv": 35.6,
+          "nguon": "tay"
+        },
+        "canh7_the_pearl": {
+          "ath": -63.3,
+          "atv": 26.2,
+          "nguon": "tay"
+        },
+        "canh8_park_village": {
+          "ath": 80.9,
+          "atv": 88.9,
+          "nguon": "tay"
+        }
+      }
+    },
+    {
+      "id": "pk-rivera",
+      "ten": "PK Rivera",
+      "nhom": "phan-khu",
+      "era": false,
+      "_tq": "rivera",
+      "gps": [
+        10.660672,
+        106.450584
+      ],
+      "_gps_tu": "suy tu canh2_vong_xoay_loi_vao (mat dat phang): xa 1517m, sai vi tri ~84m",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": 37.8,
+          "atv": 9.7,
+          "nguon": "tay"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": -40.4,
+          "atv": 3.2,
+          "nguon": "tay"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": -172.5,
+          "atv": 22.7,
+          "nguon": "may",
+          "sai_do": 6.4
+        },
+        "canh6_rivera": {
+          "ath": -88.1,
+          "atv": 77.2,
+          "nguon": "tay"
+        },
+        "canh7_the_pearl": {
+          "ath": -88.2,
+          "atv": 35.5,
+          "nguon": "tay"
+        },
+        "canh8_park_village": {
+          "ath": -21.2,
+          "atv": 37.8,
+          "nguon": "tay"
+        }
+      }
+    },
+    {
+      "id": "pk-the-pearl",
+      "ten": "PK The Pearl",
+      "nhom": "phan-khu",
+      "era": false,
+      "_tq": "the-pearl",
+      "gps": [
+        10.656368,
+        106.444657
+      ],
+      "_gps_tu": "TAM GIAC DAC tu 2 lan Anh Tony cham tay (canh2_vong_xoay_loi_vao x canh5_aquaria_song_vam_co), goc giao 51.6 do. Chinh xac hon han ban suy tu 1 lan cham + gia dinh mat dat phang.",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": 26.2,
+          "atv": 7.3,
+          "nguon": "tay"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": -52.7,
+          "atv": 2.3,
+          "nguon": "tay"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": 135.1,
+          "atv": 29.5,
+          "nguon": "tay"
+        },
+        "canh6_rivera": {
+          "ath": 89.2,
+          "atv": 39.3,
+          "nguon": "tay"
+        },
+        "canh7_the_pearl": {
+          "ath": -133.7,
+          "atv": 87.4,
+          "nguon": "tay"
+        },
+        "canh8_park_village": {
+          "ath": -62.8,
+          "atv": 19.1,
+          "nguon": "tay"
+        }
+      }
+    },
+    {
+      "id": "pk-the-marina",
+      "ten": "PK The Marina",
+      "nhom": "phan-khu",
+      "era": false,
+      "_tq": "the-marina",
+      "gps": [
+        10.650422,
+        106.444582
+      ],
+      "_gps_tu": "TAM GIAC DAC tu 2 lan Anh Tony cham tay (canh2_vong_xoay_loi_vao x canh5_aquaria_song_vam_co), goc giao 15.2 do. Chinh xac hon han ban suy tu 1 lan cham + gia dinh mat dat phang.",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": 11.3,
+          "atv": 5.5,
+          "nguon": "tay"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": -70.3,
+          "atv": 0.9,
+          "nguon": "tay"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": 83.8,
+          "atv": 18.6,
+          "nguon": "tay"
+        },
+        "canh6_rivera": {
+          "ath": 85.5,
+          "atv": 17.3,
+          "nguon": "tay"
+        },
+        "canh7_the_pearl": {
+          "ath": 85.2,
+          "atv": 34.8,
+          "nguon": "tay"
+        },
+        "canh8_park_village": {
+          "ath": -78.2,
+          "atv": 11.4,
+          "nguon": "tay"
+        }
+      }
+    },
+    {
+      "id": "pk-solaria",
+      "ten": "PK Solaria",
+      "nhom": "phan-khu",
+      "era": false,
+      "_tq": "solaria",
+      "gps": [
+        10.661202,
+        106.452493
+      ],
+      "_gps_tu": "TAM GIAC DAC tu 2 lan Anh Tony cham tay (canh1_truc_duong_vao x canh5_aquaria_song_vam_co), goc giao 86.7 do. Chinh xac hon han ban suy tu 1 lan cham + gia dinh mat dat phang.",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": 36.1,
+          "atv": 12.4,
+          "nguon": "tay"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": -33.7,
+          "atv": 5.8,
+          "nguon": "tay"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": -161.1,
+          "atv": 24.7,
+          "nguon": "tay"
+        },
+        "canh6_rivera": {
+          "ath": -55.2,
+          "atv": 43.5,
+          "nguon": "tay"
+        },
+        "canh7_the_pearl": {
+          "ath": -73.7,
+          "atv": 26.8,
+          "nguon": "tay"
+        },
+        "canh8_park_village": {
+          "ath": 1.3,
+          "atv": 64.3,
+          "nguon": "tay"
+        }
+      }
+    },
+    {
+      "id": "pk-solaria-rise",
+      "ten": "PK Solaria Rise",
+      "nhom": "phan-khu",
+      "era": false,
+      "_tq": "solaria-rise",
+      "gps": [
+        10.653592,
+        106.448318
+      ],
+      "_gps_tu": "TAM GIAC DAC tu 2 lan Anh Tony cham tay (canh2_vong_xoay_loi_vao x canh5_aquaria_song_vam_co), goc giao 62.9 do. Chinh xac hon han ban suy tu 1 lan cham + gia dinh mat dat phang.",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": 14.5,
+          "atv": 8.8,
+          "nguon": "tay"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": -67.7,
+          "atv": 2.5,
+          "nguon": "tay"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": 134.7,
+          "atv": 50.9,
+          "nguon": "tay"
+        },
+        "canh6_rivera": {
+          "ath": 52.2,
+          "atv": 33.5,
+          "nguon": "tay"
+        },
+        "canh7_the_pearl": {
+          "ath": -10.6,
+          "atv": 52.4,
+          "nguon": "tay"
+        },
+        "canh8_park_village": {
+          "ath": -85.8,
+          "atv": 25.5,
+          "nguon": "tay"
+        }
+      }
+    },
+    {
+      "id": "pk-ehome",
+      "ten": "PK Ehome Southgate",
+      "nhom": "phan-khu",
+      "era": false,
+      "_tq": "ehome-southgate",
+      "gps": [
+        10.656551,
+        106.461355
+      ],
+      "_gps_tu": "TAM GIAC DAC tu 2 lan Anh Tony cham tay (canh2_vong_xoay_loi_vao x canh1_truc_duong_vao), goc giao 28.0 do. Chinh xac hon han ban suy tu 1 lan cham + gia dinh mat dat phang.",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": -16.9,
+          "atv": 23.2,
+          "nguon": "tay"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": -133.5,
+          "atv": 14.3,
+          "nguon": "tay"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": -106.1,
+          "atv": 17.7,
+          "nguon": "may",
+          "sai_do": 1.8
+        },
+        "canh6_rivera": {
+          "ath": -33.5,
+          "atv": 15.1,
+          "nguon": "tay"
+        },
+        "canh7_the_pearl": {
+          "ath": -47.3,
+          "atv": 14.9,
+          "nguon": "tay"
+        },
+        "canh8_park_village": {
+          "ath": 153.3,
+          "atv": 25.1,
+          "nguon": "tay"
+        }
+      }
+    },
+    {
+      "id": "duong-cao-toc-trung-luong",
+      "ten": "Cao tốc TP.HCM – Trung Lương",
+      "nhom": "duong",
+      "icon": "duong",
+      "_them": "Anh Tony tu them tren man hinh 15/09 (id nhap 'them-1789465665721')",
+      "gps": [
+        10.653419,
+        106.474928
+      ],
+      "_gps_tu": "suy tu canh2_vong_xoay_loi_vao (mat dat phang): xa 1441m, sai vi tri ~76m",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": -102.2,
+          "atv": 10.2,
+          "nguon": "tay"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": 154.4,
+          "atv": 3.4,
+          "nguon": "may",
+          "sai_do": 4.0
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": -86.0,
+          "atv": 8.7,
+          "nguon": "may",
+          "sai_do": 2.4
+        },
+        "canh6_rivera": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua",
+          "_may_bo_vi": "canh nay mat GPS trong EXIF"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua",
+          "_may_bo_vi": "canh nay mat GPS trong EXIF"
+        }
+      }
+    },
+    {
+      "id": "tram-thu-phi",
+      "ten": "Trạm thu phí Bến Lức",
+      "nhom": "ngoai-khu",
+      "icon": "duong",
+      "_tq": "tram-thu-phi",
+      "gps": [
+        10.666487,
+        106.458434
+      ],
+      "_gps_tu": "suy tu canh2_vong_xoay_loi_vao (mat dat phang): xa 875m, sai vi tri ~29m",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": 81.7,
+          "atv": 16.5,
+          "nguon": "tay"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": 19.8,
+          "atv": 5.9,
+          "nguon": "may",
+          "sai_do": 6.9
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": -144.5,
+          "atv": 12.6,
+          "nguon": "may",
+          "sai_do": 3.4
+        },
+        "canh6_rivera": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua",
+          "_may_bo_vi": "canh nay mat GPS trong EXIF"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua",
+          "_may_bo_vi": "canh nay mat GPS trong EXIF"
+        }
+      }
+    },
+    {
+      "id": "tram-xe-bus",
+      "ten": "Trạm xe buýt",
+      "nhom": "ngoai-khu",
+      "icon": "xebus",
+      "_tq": "tram-xe-bus",
+      "gps": [
+        10.658233,
+        106.460337
+      ],
+      "_gps_tu": "suy tu canh2_vong_xoay_loi_vao (mat dat phang): xa 564m, sai vi tri ~13m",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": 3.3,
+          "atv": 24.7,
+          "nguon": "tay"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": -78.8,
+          "atv": 28.7,
+          "nguon": "tay"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": -115.9,
+          "atv": 17.8,
+          "nguon": "may",
+          "sai_do": 4.9
+        },
+        "canh6_rivera": {
+          "ath": -38.2,
+          "atv": 18.4,
+          "nguon": "tay"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua",
+          "_may_bo_vi": "canh nay mat GPS trong EXIF"
+        }
+      }
+    },
+    {
+      "id": "kcn-phu-an-thanh",
+      "ten": "KCN Phú An Thạnh",
+      "nhom": "ngoai-khu",
+      "icon": "nhamay",
+      "_tq": "kcn-phu-an-thanh",
+      "gps": [
+        10.685489,
+        106.455877
+      ],
+      "_gps_tu": "suy tu canh2_vong_xoay_loi_vao (mat dat phang): xa 2849m, sai vi tri ~305m",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": 111.2,
+          "atv": 5.2,
+          "nguon": "tay"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": 30.0,
+          "atv": 1.8,
+          "nguon": "may",
+          "sai_do": 2.1
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": -163.6,
+          "atv": 6.2,
+          "nguon": "may",
+          "sai_do": 1.7
+        },
+        "canh6_rivera": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua",
+          "_may_bo_vi": "canh nay mat GPS trong EXIF"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua",
+          "_may_bo_vi": "canh nay mat GPS trong EXIF"
+        }
+      }
+    },
+    {
+      "id": "kcn-thuan-dao",
+      "ten": "KCN Thuận Đạo",
+      "nhom": "ngoai-khu",
+      "icon": "nhamay",
+      "_tq": "kcn-thuan-dao",
+      "gps": [
+        10.631963,
+        106.487514
+      ],
+      "_gps_tu": "suy tu canh2_vong_xoay_loi_vao (mat dat phang): xa 4121m, sai vi tri ~666m",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": -87.3,
+          "atv": 3.6,
+          "nguon": "tay"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": 178.4,
+          "atv": 1.3,
+          "nguon": "may",
+          "sai_do": 1.5
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": -53.5,
+          "atv": 5.1,
+          "nguon": "may",
+          "sai_do": 1.4
+        },
+        "canh6_rivera": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua",
+          "_may_bo_vi": "canh nay mat GPS trong EXIF"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua",
+          "_may_bo_vi": "canh nay mat GPS trong EXIF"
+        }
+      }
+    },
+    {
+      "id": "phu-my-hung",
+      "ten": "Khu đô thị Phú Mỹ Hưng",
+      "nhom": "ngoai-khu",
+      "icon": "toanha",
+      "_tq": "phu-my-hung",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh6_rivera": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        }
+      }
+    },
+    {
+      "id": "benh-vien",
+      "ten": "Bệnh viện",
+      "nhom": "ngoai-khu",
+      "icon": "yte",
+      "_tq": "benh-vien",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh6_rivera": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        }
+      }
+    },
+    {
+      "id": "bv-nhi-dong",
+      "ten": "Bệnh viện Nhi Đồng",
+      "nhom": "ngoai-khu",
+      "icon": "yte",
+      "_tq": "bv-nhi-dong",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh6_rivera": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        }
+      }
+    },
+    {
+      "id": "truong-dai-hoc",
+      "ten": "Trường đại học",
+      "nhom": "ngoai-khu",
+      "icon": "hoc",
+      "_tq": "truong-dai-hoc",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh6_rivera": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        }
+      }
+    },
+    {
+      "id": "ttmt",
+      "ten": "Trung tâm thương mại",
+      "nhom": "ngoai-khu",
+      "icon": "muasam",
+      "_tq": "ttmt",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh6_rivera": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        }
+      }
+    },
+    {
+      "id": "van-lai-vien",
+      "ten": "Khu vui chơi Vạn Lai Viên",
+      "nhom": "ngoai-khu",
+      "icon": "vuichoi",
+      "_tq": "van-lai-vien",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh6_rivera": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        }
+      }
+    },
+    {
+      "id": "country-club",
+      "ten": "Country Club",
+      "nhom": "noi-khu",
+      "icon": "golf",
+      "_tq": "country-club",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": -77.1,
+          "atv": 9.9,
+          "nguon": "tay"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": -118.3,
+          "atv": 25,
+          "nguon": "tay"
+        },
+        "canh6_rivera": {
+          "ath": -28,
+          "atv": 21.8,
+          "nguon": "tay"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh8_park_village": {
+          "ath": 165.6,
+          "atv": 37.8,
+          "nguon": "tay"
+        }
+      }
+    },
+    {
+      "id": "central-park",
+      "ten": "Công viên trung tâm",
+      "nhom": "noi-khu",
+      "icon": "cay",
+      "_tq": "central-park",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": 15.7,
+          "atv": 15.3,
+          "nguon": "tay"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": -63.2,
+          "atv": 7.4,
+          "nguon": "tay"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": -131.1,
+          "atv": 28.3,
+          "nguon": "tay"
+        },
+        "canh6_rivera": {
+          "ath": -26.9,
+          "atv": 27.9,
+          "nguon": "tay"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh8_park_village": {
+          "ath": -178.2,
+          "atv": 55.7,
+          "nguon": "tay"
+        }
+      }
+    },
+    {
+      "id": "cong-chao",
+      "ten": "Cổng chào Waterpoint",
+      "nhom": "noi-khu",
+      "icon": "cong",
+      "_tq": "cong-chao",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": 19.9,
+          "atv": 55.6,
+          "nguon": "tay"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": 81.8,
+          "atv": 22.3,
+          "nguon": "tay"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh6_rivera": {
+          "ath": -51.2,
+          "atv": 15,
+          "nguon": "tay"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh8_park_village": {
+          "ath": 122.9,
+          "atv": 21.3,
+          "nguon": "tay"
+        }
+      }
+    },
+    {
+      "id": "cam-trai",
+      "ten": "Khu cắm trại ngoài trời",
+      "nhom": "noi-khu",
+      "icon": "leu",
+      "_tq": "cam-trai",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh6_rivera": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        }
+      }
+    },
+    {
+      "id": "thuong-mai-vp",
+      "ten": "Khu thương mại & văn phòng",
+      "nhom": "noi-khu",
+      "icon": "toanha",
+      "_tq": "thuong-mai-vp",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh6_rivera": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        }
+      }
+    },
+    {
+      "id": "khu-vui-choi",
+      "ten": "Khu vui chơi trẻ em",
+      "nhom": "noi-khu",
+      "icon": "vuichoi",
+      "_tq": "khu-vui-choi",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh6_rivera": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        }
+      }
+    },
+    {
+      "id": "lang-viet-nhat",
+      "ten": "Làng Việt – Nhật",
+      "nhom": "noi-khu",
+      "icon": "nha",
+      "_tq": "lang-viet-nhat",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": 19.3,
+          "atv": 10.3,
+          "nguon": "tay"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": -174.6,
+          "atv": 44.2,
+          "nguon": "tay"
+        },
+        "canh6_rivera": {
+          "ath": 22.9,
+          "atv": 44.3,
+          "nguon": "tay"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh8_park_village": {
+          "ath": -84.2,
+          "atv": 37.5,
+          "nguon": "tay"
+        }
+      }
+    },
+    {
+      "id": "emasi-plus",
+      "ten": "Trường quốc tế EMASI Plus",
+      "nhom": "noi-khu",
+      "icon": "hoc",
+      "_tq": "emasi-plus",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": 49.2,
+          "atv": 14.3,
+          "nguon": "tay"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": -15.3,
+          "atv": 5.1,
+          "nguon": "tay"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": -153,
+          "atv": 17.9,
+          "nguon": "tay"
+        },
+        "canh6_rivera": {
+          "ath": -74,
+          "atv": 28.3,
+          "nguon": "tay"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh8_park_village": {
+          "ath": 59.9,
+          "atv": 41,
+          "nguon": "tay"
+        }
+      }
+    },
+    {
+      "id": "truong-lien-cap",
+      "ten": "Trường liên cấp",
+      "nhom": "noi-khu",
+      "icon": "hoc",
+      "_tq": "truong-lien-cap",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh6_rivera": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        }
+      }
+    },
+    {
+      "id": "vinh-harbor",
+      "ten": "Vịnh Harbor",
+      "nhom": "noi-khu",
+      "icon": "thuyen",
+      "_tq": "vinh-harbor",
+      "toa_do": {
+        "canh2_vong_xoay_loi_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh1_truc_duong_vao": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh5_aquaria_song_vam_co": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh6_rivera": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        },
+        "canh7_the_pearl": {
+          "ath": null,
+          "atv": null,
+          "nguon": "chua"
+        }
+      }
+    }
+  ],
+  "_da_bo": "10 tien ich nhom 'noi-khu' cua poi.json KHONG dua sang: Country Club · Cong vien trung tam · Cong chao Waterpoint · Khu cam trai ngoai troi · Khu thuong mai & van phong · Khu vui choi tre em · Lang Viet-Nhat · Truong Emasi Plus · Truong lien cap · Vinh Harbor. Anh Tony muon them cai nao thi bao, chep 1 dong la xong.",
+  "_icon": "Ten bo icon SVG ERA tu ve trong index.html (yte/muasam/hoc/xebus/duong/vuichoi/leu/golf/cay/nha/thuyen/cong/nhamay/toanha/cham). KHONG dung anh gim cua CDT — muc 8.1 CLAUDE.md.",
+  "_cam_16_09": "🔴 CAM 9 DIEM Anh Tony cham tay o canh1_truc_duong_vao ngay 16/09 (ban XUAT o 01-CONG-CU/kiem-gim-tour360/_tam/xuat-20260916.json). 7 diem de len so MAY da doan (lech 0.5-5 do ngang, 0.3-1.7 do doc - may doan kha sat), 2 diem may da tu bo vi \"qua gan\" (PK Ehome Southgate, Tram xe buyt) nay da co. canh1 con 3 o \"may\" (cao toc, tram thu phi, KCN Phu An Thanh) + KCN Thuan Dao chua co. Vi cam toa do nen tang _ban.",
+  "_tam_giac_dac": "🟢 16/09 CHIEU: DA TAM GIAC DAC THANH CONG cho 6 phan khu co 2 lan cham tay (canh2 x canh5, duong day 1840m). Goc giao 15-75 do (cap canh1 x canh2 truoc do chi 2-13 do vi hai canh cach nhau co 414m - da loai). KIEM CHEO DOC LAP: tinh nguoc do cao mat dat tu goc atv o canh2 ra -44m..+20m so voi muc 0, trong khi phep giao tuyen KHONG HE dung atv => hai duong tinh doc lap khop nhau, tin duoc. Vi tri moi lech 64-285m so voi ban suy tu 1 lan cham. Diem nao chua du 2 lan cham tay thi GPS van la ban cu (mat dat phang), xem khoa _gps_tu cua tung diem.",
+  "_them_tien_ich_16_09": "🔴 Anh Tony 16/09: \"them danh sach tien ich vao tool cham point de anh cham cho em luon\". Da dua HET vao: 6 tien ich ngoai khu bo hom 15/09 (vi khong thay tren anh canh2) + 10 tien ich NOI KHU tu tong-quan/poi.json (truoc gio chua bao gio dua vao). Ly do dua lai 6 cai da bo: nay Anh cham tren CA 5 CANH chu khong chi canh2 - tu canh6 (bay 399m) hay canh7 (bay 499m) thi nhin duoc xa hon han. Cai nao khong thay thi CU BO TRONG, khong cham la khong ve, khong hong gi. 🔴 Toa do de null het - KHONG chep tu poi.json sang (poi.json do tren anh pano/tt-ngay cua tour CDT, mot vi tri bay khac han). Vi them diem nen tang _ban.",
+  "_gop_emasi_16_09": "⚠️ Anh Tony bam THEM DIEM tao \"Truong quoc te EMASI Plus\" trong khi danh sach DA CO SAN \"emasi-plus\" (nhom noi-khu) - Em vua them chieu 16/09 nen Anh chua quen mat, va diem tu them lai roi vao nhom \"duong\" vi o chon nhom mac dinh la 2. ANH TU PHAT HIEN va cham lai dung vao emasi-plus (49.2/14.3) - da lay so nay, bo diem trung. 🔴 TEN: Em co lo doi thanh \"Truong quoc te EMASI Plus\" (ten Anh go luc tao diem trung) roi TRA LAI \"Truong Emasi Plus\" - Anh khong yeu cau doi ten, Em khong duoc tu doi. Neu Anh muon ten day du hon thi bao, sua khoa \"ten\" la xong. 🔴 Da them CANH BAO TRUNG TEN vao nut THEM DIEM de khoi lap lai.",
+  "_doi_ten_emasi": "✏️ Anh Tony chot 16/09: \"Truong Emasi Plus\" -> \"Truong quoc te EMASI Plus\". Day la NHAN KHACH THAY. Da doi o CA 3 file du lieu co ten nay: gim-tong-quan.json (trang Thuc te) · tong-quan/poi.json (trang Tong quan 3D) · dia-danh.json. Anh chi noi mot cau khong chi ro file, Em doi het cho khoi lech - cung mot dia diem thi phai cung mot ten. 🔴 KHAC voi luat 15/09 ve PHAN KHU (hai trang co y goi khac ten nhau): luat do chi ap cho tong-quan/phan-khu.json, KHONG ap cho tien ich. Ten tien ich trong poi.json von la ten Em Teo tu dat tu slug cua CDT, khoa \"_can_xac_nhan\" ghi ro cho Anh Tony duyet - nay Anh duyet cai dau tien.",
+  "_cham_16_09_canh8": "16/09 toi: Anh Tony cham tay 13 gim cho canh8_park_village qua ?tool=1. Dan bang cach GOP (chi dung toa_do cua 18 gim co trong ban XUAT), KHONG ghi de ca mang - ban XUAT chi liet ke gim DA CO toa do, 11 gim chua cham o dau khong nam trong do, ghi de la mat sach. Doi chieu truoc khi dan: them 13 · sua 0 · giu nguyen 73 · mat 0. 🔴 Da TANG _ban 13 -> 14 theo dung luat o _ban_ghi_chu: khong tang thi nhap cu trong localStorage (KHOAG='wp_thucte_gim_tq') van con _ban=13 = khop, trinh duyet se doc NHAP thay vi doc FILE — dan data xong ma trang hien ban cu, Ctrl+F5 vo ich vi do khong phai cache. BANG doc thang tu _ban cua file nay nen KHONG phai sua index.html."
+}

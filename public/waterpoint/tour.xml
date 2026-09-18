@@ -1,0 +1,180 @@
+<krpano version="1.19" title="Thực tế - Waterpoint">
+
+<!-- ============================================================
+     TAB 2 - "THUC TE"
+     8 canh flycam THAT do ERA tu bay, DJI FC3170.
+     Anh goc 8192x4096 -> MULTIRES 3 level (2624 / 1280 / 640).
+
+       canh1  bay  94 m  truc duong vao       08/09 15:57   co GPS
+       canh2  bay 259 m  vong xoay loi vao    08/09 15:49   co GPS
+       canh3  bay 391 m  ho canh quan         08/09 14:34   co GPS
+       canh4  bay 390 m  toan canh Aquaria    08/09 14:40   co GPS
+       canh5  bay 410 m  Aquaria & song       08/09 14:45   co GPS
+       canh6  bay 400 m  Rivera               05/09         KHONG GPS -> cham tay
+       canh7  bay 499 m  The Pearl            05/09         KHONG GPS -> cham tay
+       canh8  bay 360 m  Park Village         05/09 11:46   KHONG GPS -> SUY RA duoc (xem canh8)
+
+     🔴 THU TU NUT o dai duoi KHONG lay tu file nay - lay tu `canh.json`.
+        Them scene o day moi chi la "co anh de nap"; muon no hien thanh nut
+        thi phai them mot khoi trong `canh.json` nua.
+
+     🔴🔴🔴 BAY MOI (10/09/2026) - TEN SCENE KHONG DUOC BAT DAU BANG CHU SO.
+     Ban truoc dat ten "01-truc-duong-vao" -> krpano hieu la BIEU THUC SO HOC,
+     vut ten di, tu dat lai thanh n1..n5, va scene[0].name tra ve NULL
+     => loadscene(null) => MAN DEN, KHONG MOT DONG LOI NAO.
+     Bang chung: scene.count=6 (thua 1), ten = [null,n1,n2,n3,n4,n5].
+     LUAT: ten scene bat dau bang CHU CAI. Ten THU MUC/FILE thi so van OK.
+
+     Bieu tuong flycam giua cac canh do index.html ve bang HTML,
+     toa do nap tu canh.json.
+     Engine krpano 1.19-pr16 - BAN DA MUA cua ERA.
+     ============================================================ -->
+
+<autorotate enabled="false" waittime="5.0" speed="2.0" horizon="0.0" />
+
+<!-- 12/09: BO tween zoom moi lan vao canh. Anh Tony bi say (dau ong ong,
+     buon non). Zoom cuong buc 120->90 trong 1.2s = chuyen dong nguoi xem
+     KHONG dieu khien duoc -> vection conflict. Vao canh la dung yen. -->
+<action name="vao_canh">
+  <!-- 12/09: bo `set(view.fov,100)`. No GHI DE fov rieng cua tung canh,
+       nen canh nao dat fov khac trong <view> cung bi keo ve 100. -->
+</action>
+
+<!-- 12/09: giam quan tinh keo chuot. mousefriction mac dinh 0.9 = anh con
+     TROI tiep sau khi tha tay -> cam giac lenh denh. 0.5 = dung gan nhu ngay. -->
+<control mousespeed="8.0" mousefriction="0.5" mouseaccelerate="1.0" />
+
+<!-- 🔴 CANH MO DAU (Anh Tony chot 16/09): bam tab "Thuc te" la vao thang
+     "Flycam tong quan" — canh xem tong quan phan khu, co lop gim 8 phan khu.
+     Truoc do mo o canh1 "Truc duong vao".
+     ⚠️ Canh mo dau do RIENG dong nay quyet, KHONG theo thu tu nut o canh.json
+     (thu tu nut da de Flycam tong quan dung dau tu 15/09 ma tour van mo canh1 —
+     treo mat mot ngay vi tuong hai thu di chung).
+     ⚠️ Ten scene van la `canh2_vong_xoay_loi_vao` va title van "Vong xoay loi vao":
+     doi id scene la MAN DEN. Ten khach thay lay tu canh.json. Dung "don" cho khop. -->
+<action name="startup" autorun="onstart">
+  loadscene(canh2_vong_xoay_loi_vao, null, MERGE);
+</action>
+
+<scene name="canh1_truc_duong_vao" title="Trục đường vào" cao="94" onstart="vao_canh();">
+  <!-- Mo ra: cum chung cu trang + truc duong doi. ath 0 la BAI DAT SAN LAP - tranh. -->
+  <view hlookat="-115" vlookat="12" fov="100" fovmin="45" fovmax="115" limitview="auto" maxpixelzoom="1.0" />
+  <preview url="pano/01-truc-duong-vao/01-truc-duong-vao.tiles/preview.jpg" />
+  <image type="CUBE" multires="true" tilesize="512">
+    <level tiledimagewidth="2624" tiledimageheight="2624"><cube url="pano/01-truc-duong-vao/01-truc-duong-vao.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="1280" tiledimageheight="1280"><cube url="pano/01-truc-duong-vao/01-truc-duong-vao.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="640"  tiledimageheight="640"><cube url="pano/01-truc-duong-vao/01-truc-duong-vao.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" /></level>
+  </image>
+</scene>
+
+<scene name="canh2_vong_xoay_loi_vao" title="Vòng xoay lối vào" cao="259" onstart="vao_canh();">
+  <!-- Mo ra: vong xoay + nut giao ha tang. -->
+  <view hlookat="10" vlookat="12" fov="100" fovmin="45" fovmax="115" limitview="auto" maxpixelzoom="1.0" />
+  <preview url="pano/02-vong-xoay-loi-vao/02-vong-xoay-loi-vao.tiles/preview.jpg" />
+  <image type="CUBE" multires="true" tilesize="512">
+    <level tiledimagewidth="2624" tiledimageheight="2624"><cube url="pano/02-vong-xoay-loi-vao/02-vong-xoay-loi-vao.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="1280" tiledimageheight="1280"><cube url="pano/02-vong-xoay-loi-vao/02-vong-xoay-loi-vao.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="640"  tiledimageheight="640"><cube url="pano/02-vong-xoay-loi-vao/02-vong-xoay-loi-vao.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" /></level>
+  </image>
+</scene>
+
+<scene name="canh3_ho_canh_quan" title="Vịnh nước ngọt" cao="391" onstart="vao_canh();">
+  <!-- Mo ra: ho canh quan + khu nha da xay ben phai. -->
+  <view hlookat="45" vlookat="12" fov="100" fovmin="45" fovmax="115" limitview="auto" maxpixelzoom="1.0" />
+  <preview url="pano/03-ho-canh-quan/03-ho-canh-quan.tiles/preview.jpg" />
+  <image type="CUBE" multires="true" tilesize="512">
+    <level tiledimagewidth="2624" tiledimageheight="2624"><cube url="pano/03-ho-canh-quan/03-ho-canh-quan.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="1280" tiledimageheight="1280"><cube url="pano/03-ho-canh-quan/03-ho-canh-quan.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="640"  tiledimageheight="640"><cube url="pano/03-ho-canh-quan/03-ho-canh-quan.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" /></level>
+  </image>
+</scene>
+
+<scene name="canh4_toan_canh_aquaria" title="Toàn cảnh Aquaria" cao="390" onstart="vao_canh();">
+  <!-- Mo ra: mang nha lien ke da xay day dac. ath 0 la bai cat - tranh. -->
+  <!-- Anh Tony chot 12/09: mo canh nay bang goc NHIN THANG XUONG (top-down),
+       thay toan bo khu do thi. Do bang may, so anh 1:1. -->
+  <view hlookat="165" vlookat="88" fov="110" fovmin="45" fovmax="120" limitview="auto" maxpixelzoom="1.0" />
+  <preview url="pano/04-toan-canh-aquaria/04-toan-canh-aquaria.tiles/preview.jpg" />
+  <image type="CUBE" multires="true" tilesize="512">
+    <level tiledimagewidth="2624" tiledimageheight="2624"><cube url="pano/04-toan-canh-aquaria/04-toan-canh-aquaria.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="1280" tiledimageheight="1280"><cube url="pano/04-toan-canh-aquaria/04-toan-canh-aquaria.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="640"  tiledimageheight="640"><cube url="pano/04-toan-canh-aquaria/04-toan-canh-aquaria.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" /></level>
+  </image>
+</scene>
+
+<scene name="canh5_aquaria_song_vam_co" title="Aquaria &amp; sông Vàm Cỏ" cao="410" onstart="vao_canh();">
+  <!-- Mo ra: mang nha lien ke da xay. Tranh -100..-75 (bai dat dang san lap)
+       va +30..+60 (choi nang). -->
+  <!-- Anh Tony chot 12/09: song Vam Co vat ngang, khu Aquaria nam duoi. -->
+  <view hlookat="5" vlookat="45" fov="105" fovmin="45" fovmax="115" limitview="auto" maxpixelzoom="1.0" />
+  <preview url="pano/05-aquaria-song-vam-co/05-aquaria-song-vam-co.tiles/preview.jpg" />
+  <image type="CUBE" multires="true" tilesize="512">
+    <level tiledimagewidth="2624" tiledimageheight="2624"><cube url="pano/05-aquaria-song-vam-co/05-aquaria-song-vam-co.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="1280" tiledimageheight="1280"><cube url="pano/05-aquaria-song-vam-co/05-aquaria-song-vam-co.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="640"  tiledimageheight="640"><cube url="pano/05-aquaria-song-vam-co/05-aquaria-song-vam-co.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" /></level>
+  </image>
+</scene>
+
+<scene name="canh6_rivera" title="Rivera" cao="400" onstart="vao_canh();">
+  <!-- Mo ra: khu nha Rivera + song ben trai. -->
+  <view hlookat="-117" vlookat="12" fov="100" fovmin="45" fovmax="115" limitview="auto" maxpixelzoom="1.0" />
+  <preview url="pano/06-rivera/06-rivera.tiles/preview.jpg" />
+  <image type="CUBE" multires="true" tilesize="512">
+    <level tiledimagewidth="2624" tiledimageheight="2624"><cube url="pano/06-rivera/06-rivera.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="1280" tiledimageheight="1280"><cube url="pano/06-rivera/06-rivera.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="640"  tiledimageheight="640"><cube url="pano/06-rivera/06-rivera.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" /></level>
+  </image>
+</scene>
+
+<scene name="canh7_the_pearl" title="The Pearl" cao="499" onstart="vao_canh();">
+  <!-- Mo ra: mang nha The Pearl day dac + song om quanh. -->
+  <view hlookat="-22" vlookat="12" fov="100" fovmin="45" fovmax="115" limitview="auto" maxpixelzoom="1.0" />
+  <preview url="pano/07-the-pearl/07-the-pearl.tiles/preview.jpg" />
+  <image type="CUBE" multires="true" tilesize="512">
+    <level tiledimagewidth="2624" tiledimageheight="2624"><cube url="pano/07-the-pearl/07-the-pearl.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="1280" tiledimageheight="1280"><cube url="pano/07-the-pearl/07-the-pearl.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="640"  tiledimageheight="640"><cube url="pano/07-the-pearl/07-the-pearl.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" /></level>
+  </image>
+</scene>
+
+<!-- ============================================================
+     canh8 - PARK VILLAGE   (them 16/09/2026 chieu)
+
+     Anh Tony: *"mang cai pk park village sang ben the thuc te"*.
+     Anh da dung o trang Gio hang tu sang 16/09, nay dung chung tile -
+     KHONG nhan doi 9,5 MB.
+
+     ANH NGUON `pano/08-park-village.jpg` = `pk park village.jpg`
+     (chinh la `DJI_0482.jpg` cu, Anh Tony doi ten 16/09).
+       8192x4096 · DJI FC3170 · bay 05/09 11:46 · cao 360,2 m · yaw -63,3
+       🔴 KHONG CO GPS trong EXIF - cung lo anh bi nen lai nhu canh6/canh7.
+
+     🟢 NHUNG VI TRI BAY THI BIET: drone bay NGAY TREN khu Park Village
+        (do goc nadir: cum oval lech tam chi ~10 px/1280 = ~8,5 m mat dat
+         o do cao 360 m) => GPS canh8 ~ GPS gim `pk-park-village`
+         trong `gim-tong-quan.json` = **10.658954, 106.453683**.
+        ✅ DA KIEM CHEO va DUNG: bearing may tinh tu GPS do, so voi 3 gim
+           Anh Tony CHAM TAY doc lap -> lech **0,0° · 0,0° · 0,2°**.
+        ⇒ Con so nay dung duoc cho `chat-gps-poi` tu dien 13 gim tong quan
+          cho canh8 (xem ghi chu trong `canh.json`).
+
+     GOC MO CANH `hlookat=0 · vlookat=50` - do bang may, khong doan:
+       drone o NGAY TREN khu nen `vlookat=12` nhu cac canh khac ra
+       TOAN TROI. Da dung thu 12 khung (h 0/90/180/270/-94/154 x v 25..62)
+       roi chon: v=50 dua cum oval xuong nua duoi khung, song Vam Co vat
+       ngang phia tren, thay ca san bong + duong lon.
+     ⚠️ `fov` o day KHONG khai `fovtype` nen la **VFOV** (mac dinh krpano),
+        khac trang Gio hang (trang do khoa HFOV). Dung lan.
+     ============================================================ -->
+<scene name="canh8_park_village" title="Park Village" cao="360" onstart="vao_canh();">
+  <!-- Mo ra: cum biet thu dao Park Village nua duoi khung + song Vam Co vat ngang. -->
+  <view hlookat="0" vlookat="50" fov="100" fovmin="45" fovmax="115" limitview="auto" maxpixelzoom="1.0" />
+  <preview url="pano/08-park-village/08-park-village.tiles/preview.jpg" />
+  <image type="CUBE" multires="true" tilesize="512">
+    <level tiledimagewidth="2624" tiledimageheight="2624"><cube url="pano/08-park-village/08-park-village.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="1280" tiledimageheight="1280"><cube url="pano/08-park-village/08-park-village.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="640"  tiledimageheight="640"><cube url="pano/08-park-village/08-park-village.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" /></level>
+  </image>
+</scene>
+
+</krpano>

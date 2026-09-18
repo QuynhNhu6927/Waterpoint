@@ -1,0 +1,73 @@
+{
+  "_ban": 2,
+  "_ban_ghi_chu": "🔴 SO BAN. Moi lan Em Teo cam toa do Anh Tony cham vao file nay thi TANG SO NAY LEN 1. Tool ?tool=1 luu nhap kem so ban; so ban cua nhap khac so ban cua file => nhap la ban CU tu truoc luc cam, TOOL TU BO NO DI. Khong co co che nay thi nhap cu trong trinh duyet se GHI DE NGUOC len toa do vua cam (dat lai ve null), va cac diem Anh tu them se bi NHAN DOI. Xem napNhap() trong index.html.",
+
+  "_nguon": "32 nhan doc tu anh 'He sinh thai Tien ich' - phoi canh 2D co gan nhan, Anh Tony gui 15/09/2026. Nhom = 5 mau trong bang chu thich cuoi anh. Them 7 diem Anh Tony tu bo sung ngay tren man hinh 15/09 (Em Teo doc sot / khong co tren anh do).",
+  "_ranh_gioi": "CHI lay TEN + CACH CHIA NHOM (du kien thuc dia cua du an). KHONG chep anh gim, khong chep mau nhan, khong chep font cua CDT - muc 8.1 CLAUDE.md. Gim ve lai bang SVG theo design system ERA.",
+  "_toa_do": "ath/atv do tren DUNG bo anh ../tong-quan/pano/01-tong-quan-kdt/ (= 'WTP - hinh phoi canh 3d toan khu.png', 12000x6000). 🔴 Anh KHAC la lech het - toa do trong tong-quan/poi.json do tren pano/tt-ngay/ nen KHONG cam sang day duoc.",
+  "_tien_do": "15/09 dot 1: Anh Tony cham 23/39. Con 16 diem ath=null cho cham tiep - xem khoa '_con_lai'.",
+  "_vitri": "Khoa 'vitri' CHI hien trong tool cham (?tool=1) de Anh Tony phan biet cac diem TRUNG TEN. Khach xem KHONG thay - Anh Tony chot 15/09 giu nguyen ten goc cua CDT tren anh.",
+  "_can_xac_nhan": "Em Teo doc ten tu anh. Anh Tony doc lai truoc khi giao khach - nhat la 3 'Truong mam non' va 4 'CLB cong dong'.",
+
+  "nhom": [
+    { "id": "giao-duc",   "ten": "Giáo dục" },
+    { "id": "y-te",       "ten": "Y tế" },
+    { "id": "thuong-mai", "ten": "Thương mại – Giải trí" },
+    { "id": "hanh-chinh", "ten": "Hành chính – Dịch vụ" },
+    { "id": "van-hoa",    "ten": "Văn hoá – Thể dục thể thao" }
+  ],
+
+  "tien_ich": [
+    { "id": "truong-quoc-te-bac",   "ten": "Trường quốc tế",           "vitri": "bắc",      "nhom": "giao-duc",   "icon": "hoc",         "ath": 130.7,  "atv": 31.5 },
+    { "id": "truong-dai-hoc",       "ten": "Trường đại học",           "vitri": "đông bắc", "nhom": "giao-duc",   "icon": "hoc",         "ath": -178.9, "atv": 41.4 },
+    { "id": "truong-thcs",          "ten": "Trường trung học cơ sở",   "vitri": "trung tâm","nhom": "giao-duc",   "icon": "hoc",         "ath": null,   "atv": null },
+    { "id": "truong-tieu-hoc",      "ten": "Trường tiểu học",          "vitri": "trung tâm","nhom": "giao-duc",   "icon": "hoc",         "ath": -24.4,  "atv": 23.3 },
+    { "id": "truong-quoc-te-nam",   "ten": "Trường quốc tế",           "vitri": "nam",      "nhom": "giao-duc",   "icon": "hoc",         "ath": null,   "atv": null },
+    { "id": "truong-lien-cap",      "ten": "Trường liên cấp",          "vitri": "",         "nhom": "giao-duc",   "icon": "hoc",         "ath": -16.7,  "atv": 29.5, "them": true },
+    { "id": "truong-mam-non-tay-1", "ten": "Trường mầm non",           "vitri": "tây 1",    "nhom": "giao-duc",   "icon": "hoc",         "ath": null,   "atv": null },
+    { "id": "truong-mam-non-tay-2", "ten": "Trường mầm non",           "vitri": "tây 2",    "nhom": "giao-duc",   "icon": "hoc",         "ath": null,   "atv": null },
+    { "id": "truong-mam-non-nam",   "ten": "Trường mầm non",           "vitri": "nam",      "nhom": "giao-duc",   "icon": "hoc",         "ath": null,   "atv": null },
+
+    { "id": "phong-kham",           "ten": "Phòng khám",               "vitri": "đông bắc", "nhom": "y-te",       "icon": "yte",         "ath": null,   "atv": null },
+    { "id": "benh-vien",            "ten": "Bệnh viện",                "vitri": "đông",     "nhom": "y-te",       "icon": "yte",         "ath": -120.6, "atv": 12.2 },
+
+    { "id": "tt-thuong-mai-1",      "ten": "TT Thương mại",            "vitri": "tây 1",    "nhom": "thuong-mai", "icon": "muasam",      "ath": null,   "atv": null },
+    { "id": "tt-thuong-mai-2",      "ten": "TT Thương mại",            "vitri": "tây 2",    "nhom": "thuong-mai", "icon": "muasam",      "ath": null,   "atv": null },
+    { "id": "country-club",         "ten": "Country Club",             "vitri": "tây bắc",  "nhom": "thuong-mai", "icon": "golf",        "ath": -92.6,  "atv": 43.6 },
+    { "id": "san-tap-golf",         "ten": "Sân tập Golf",             "vitri": "",         "nhom": "thuong-mai", "icon": "golf",        "ath": 6.6,    "atv": 40.4, "them": true },
+    { "id": "trung-tam-dich-vu",    "ten": "Trung tâm dịch vụ",        "vitri": "trung tâm","nhom": "thuong-mai", "icon": "dichvu",      "ath": null,   "atv": null },
+    { "id": "he-thong-sieu-thi",    "ten": "Hệ thống siêu thị",        "vitri": "đông",     "nhom": "thuong-mai", "icon": "muasam",      "ath": -134.5, "atv": 16.7 },
+    { "id": "to-hop-tm-vp",         "ten": "Tổ hợp thương mại – văn phòng", "vitri": "",    "nhom": "thuong-mai", "icon": "toanha",      "ath": -128.4, "atv": 28,   "them": true },
+
+    { "id": "cong-chao",            "ten": "Cổng chào",                "vitri": "đông",     "nhom": "hanh-chinh", "icon": "cong",        "ath": -152.2, "atv": 18 },
+    { "id": "khu-nha-mau",          "ten": "Khu nhà mẫu",              "vitri": "trung tâm","nhom": "hanh-chinh", "icon": "nha",         "ath": null,   "atv": null },
+    { "id": "van-phong-hanh-chinh", "ten": "Văn phòng hành chính",     "vitri": "đông",     "nhom": "hanh-chinh", "icon": "toanha",      "ath": -125.3, "atv": 14.7 },
+    { "id": "trung-tam-nghien-cuu", "ten": "Trung tâm nghiên cứu",     "vitri": "đông bắc", "nhom": "hanh-chinh", "icon": "nghiencuu",   "ath": null,   "atv": null },
+    { "id": "nha-trien-lam",        "ten": "Nhà triển lãm văn hoá",    "vitri": "tây nam",  "nhom": "hanh-chinh", "icon": "trienlam",    "ath": null,   "atv": null },
+    { "id": "harbour",              "ten": "Harbour",                  "vitri": "nam",      "nhom": "hanh-chinh", "icon": "thuyen",      "ath": 14.2,   "atv": 10.6 },
+
+    { "id": "chua",                 "ten": "Chùa",                     "vitri": "tây",      "nhom": "van-hoa",    "icon": "chua",        "ath": null,   "atv": null },
+    { "id": "nha-tho",              "ten": "Nhà thờ",                  "vitri": "tây",      "nhom": "van-hoa",    "icon": "nhatho",      "ath": null,   "atv": null },
+    { "id": "clb-the-thao",         "ten": "CLB thể thao",             "vitri": "tây bắc",  "nhom": "van-hoa",    "icon": "thethao",     "ath": null,   "atv": null },
+    { "id": "cong-vien-trung-tam",  "ten": "Công viên trung tâm",      "vitri": "bắc",      "nhom": "van-hoa",    "icon": "cay",         "ath": -32.3,  "atv": 65.3 },
+    { "id": "rung-di-san",          "ten": "Rừng di sản",              "vitri": "",         "nhom": "van-hoa",    "icon": "cay",         "ath": 19.1,   "atv": 26.3, "them": true },
+    { "id": "khu-cam-trai",         "ten": "Khu cắm trại",             "vitri": "",         "nhom": "van-hoa",    "icon": "leu",         "ath": -102.4, "atv": 68.8, "them": true },
+    { "id": "quang-truong-marina",  "ten": "Quảng trường Marina",      "vitri": "",         "nhom": "van-hoa",    "icon": "quangtruong", "ath": 22.5,   "atv": 20.5, "them": true },
+    { "id": "lang-viet-nhat",       "ten": "Làng văn hoá Việt – Nhật", "vitri": "",         "nhom": "van-hoa",    "icon": "nha",         "ath": 24,     "atv": 23.6, "them": true },
+    { "id": "clb-cong-dong-tay",    "ten": "CLB cộng đồng",            "vitri": "tây",      "nhom": "van-hoa",    "icon": "clb",         "ath": 89.5,   "atv": 22 },
+    { "id": "clb-cong-dong-bac",    "ten": "CLB cộng đồng",            "vitri": "bắc",      "nhom": "van-hoa",    "icon": "clb",         "ath": -0.8,   "atv": 12.6 },
+    { "id": "clb-cong-dong-nam-1",  "ten": "CLB cộng đồng",            "vitri": "nam 1",    "nhom": "van-hoa",    "icon": "clb",         "ath": -17.3,  "atv": 16 },
+    { "id": "clb-cong-dong-nam-2",  "ten": "CLB cộng đồng",            "vitri": "nam 2",    "nhom": "van-hoa",    "icon": "clb",         "ath": null,   "atv": null },
+    { "id": "clb-ven-song-tay",     "ten": "CLB ven sông",             "vitri": "tây",      "nhom": "van-hoa",    "icon": "song",        "ath": 75.7,   "atv": 18.5 },
+    { "id": "clb-ven-song-bac",     "ten": "CLB ven sông",             "vitri": "bắc",      "nhom": "van-hoa",    "icon": "song",        "ath": 52.9,   "atv": 14.9 },
+    { "id": "clb-ven-song-nam",     "ten": "CLB ven sông",             "vitri": "nam",      "nhom": "van-hoa",    "icon": "song",        "ath": -13.4,  "atv": 13.2 }
+  ],
+
+  "_con_lai": "16 diem con ath=null, cho Anh Tony cham dot 2: truong-thcs · truong-quoc-te-nam · truong-mam-non-tay-1 · truong-mam-non-tay-2 · truong-mam-non-nam · phong-kham · tt-thuong-mai-1 · tt-thuong-mai-2 · trung-tam-dich-vu · khu-nha-mau · trung-tam-nghien-cuu · nha-trien-lam · chua · nha-tho · clb-the-thao · clb-cong-dong-nam-2",
+
+  "_da_gop": "Anh Tony tu them 'Country Club' (id nhap `them-1789460549007`, nhom van-hoa) trong khi danh sach goc DA CO san `country-club` chua cham. Em Teo GOP: giu id goc `country-club`, lay toa do Anh cham (-92.6 / 43.6), giu nhom `thuong-mai` + icon `golf`. 🔴 Chon nhom `thuong-mai` vi anh CDT to Country club mau XANH LA = 'Thuong mai - giai tri'; con `van-hoa` la gia tri MAC DINH cua o nhap (so 5), nhieu kha nang khong phai Anh chon co y. Anh muon doi lai thi sua 1 chu o dong `country-club`.",
+
+  "_them_moi": "7 diem Anh Tony tu them, KHONG co tren anh 'He sinh thai Tien ich': Truong lien cap · San tap Golf · To hop thuong mai-van phong · Rung di san · Khu cam trai · Quang truong Marina · Lang van hoa Viet-Nhat. Em Teo doi id nhap (`them-<dau-thoi-gian>`) sang id doc duoc, gan icon that thay cho `cham` mac dinh, va xep vao dung nhom: 'To hop thuong mai-van phong' -> thuong-mai (Anh chon), 'San tap Golf' -> thuong-mai (Anh de mac dinh van-hoa; xep cung Country Club cho dung mach golf), 'Truong lien cap' -> giao-duc (Anh chon), 4 cai con lai giu van-hoa.",
+
+  "_icon": "Ten bo icon ERA tu ve bang SVG trong index.html: yte muasam hoc golf cay nha thuyen cong toanha chua nhatho thethao clb song trienlam nghiencuu dichvu leu quangtruong cham. KHONG dung anh gim cua CDT - muc 8.1."
+}

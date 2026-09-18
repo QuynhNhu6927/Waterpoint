@@ -1,0 +1,7 @@
+# Cau hinh deploy Cloudflare (Workers Static Assets) cho site tinh.
+# Build: npm run build -> Next.js xuat ra out/ -> wrangler deploy upload out/.
+name = "waterpoint"
+compatibility_date = "2026-09-17"
+
+[assets]
+directory = "./out"

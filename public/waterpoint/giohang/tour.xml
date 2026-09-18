@@ -1,0 +1,144 @@
+<krpano version="1.19" title="Giỏ hàng - Waterpoint">
+
+<!-- ============================================================
+     BUOC 3 - GIO HANG
+
+     Anh Tony chot 12/09: dung ANH "Aquaria & song Vam Co" (canh 5),
+     nhin THANG XUONG, khung hinh om tron khu phan lo.
+
+     🔴 Anh KHONG chep sang day - tro thang sang ../pano/ cua trang
+     Thuc te. Cung mot goc web nen duong dan tuong doi chay tot,
+     va khoi nhan doi 8,7 MB tile.
+
+     🔴 GOC NHIN DO BANG MAY, KHONG DOAN (12/09):
+       h = 90   v = 90   fov = 37
+     Cach ra so nay:
+       1. Tinh nguoc tu canh4 (da chot h=165 top-down):
+          yaw canh4 = -8.2 · yaw canh5 = 172.3 -> lech 180.5 do
+          => h canh5 ~ 165 - 180.5 = -15.5
+          Kiem chung: ath(canh5->canh4) - ath(canh4->canh5)
+                    = -41.2 - (-40.7) = -0.5 = 180 - 180.5  ✔ cong thuc dung
+       2. Nhung -15.5 van nghieng ~13 do so voi anh Anh Tony gui
+          -> do tiep bang cach chup anh roi so 1:1, ra h = 90.
+       3. fov: lay 2 HO BOI xanh lam moc do khoang cach.
+          Anh Anh Tony: 2 ho cach nhau 31,8% be ngang khung.
+          fov 40 -> 30,2%  ·  fov 38 -> 31,0%  ·  fov 36,5 -> 31,1%
+          => chot fov 37.
+          ⚠️ KHONG do theo khung do Anh khoanh - khung do ve tay,
+             khong phai ranh gioi that.
+
+     🔴 BAY 12/09 (da dinh): dat view NGAY SAU loadscene la vo ich -
+        <view> cua scene va action onstart chay SAU se ghi de.
+        Vi vay goc nhin phai nam trong chinh <view> nay.
+
+     Engine krpano 1.19-pr16 - BAN DA MUA cua ERA.
+     ============================================================ -->
+
+<autorotate enabled="false" />
+
+<!-- 12/09: giu nguyen cau hinh CHONG SAY XE da chot -
+     quan tinh chuot thap, khong tween zoom khi vao canh. -->
+<control mousespeed="8.0" mousefriction="0.5" mouseaccelerate="1.0" />
+
+<action name="startup" autorun="onstart">
+  loadscene(get(scene[0].name), null, MERGE);
+</action>
+
+<!-- ==================================================================
+     🔴🔴 BAY 50 (MOI, 12/09 toi) - KHONG DAT THANG vlookat=90 TRONG <view>
+
+     Nadir (v=90) la DIEM KY DI: nhin thang xuong thi camera khong con
+     huong "len" xac dinh. Khai bao thang v=90 trong <view> thi krpano
+     BO QUA LUON hlookat - da do h=0 · h=90 o ca v=89 lan v=90,
+     BON lan ra ANH GIONG HET NHAU, xoay 90 do so voi anh Anh Tony gui.
+     🔴 Doc so bao ve van thay dung "hlookat: 90" nen rat de tuong da dat dung.
+        Chi chup anh ra moi lo. Cung ho bay T10 - con so noi doi.
+
+     ✅ Cach chay duoc: vao canh o goc THUONG (v=45, giong canh5 ben trang
+        Thuc te), doi mot nhip cho <view> + onstart chay xong, ROI MOI xoay
+        xuong nadir BANG JS ben index.html. Luc do hlookat con y nghia, krpano giu goc xoay khi
+        di len cuc. Day dung la trinh tu da chup duoc anh khop voi anh Anh Tony.
+     ⚠️ Da thu <action>+delayedcall trong chinh file nay: KHONG CHAY,
+        view van dung nguyen o <view> (do duoc h=5 v=45 fov=105).
+        Nen viec xoay xuong nadir lam ben index.html.
+     ================================================================== -->
+<!-- 🔴 TEN SCENE DUNG GACH DUOI, KHONG GACH NGANG (16/09).
+     `doiCanh()` ben index.html goi `loadscene(pk_aqua, ...)` KHONG nhay -
+     y het cach trang Thuc te lam. Ten co gach ngang thi krpano doc thanh
+     PHEP TRU (bay da ghi trong CLAUDE.md muc 5) -> ten vut di, tra ve null,
+     man den, KHONG mot dong loi nao.
+     Ten cu la `gio-hang`, chi duoc tham chieu trong chinh file nay
+     (da grep ca thu muc) nen doi ten khong pha gi. -->
+<scene name="pk_aqua" title="PK The Aqua" onstart="">
+  <!-- 🔴🔴 DA DINH VA DA GO (12/09 toi): ban dau Em Teo dat limitview="range"
+       kem hlookatmin/max 65..115 de "khoa khong cho lac mat khu dat".
+       => HONG: voi limitview="range" krpano ep fov NHO LAI cho vua dai goc
+          da khai bao. Dai ngang chi 50 do nen no zoom sat rat, mat han
+          khung hinh Anh Tony chot. Chup anh moi lo ra.
+       => Tro ve limitview="auto" giong het 2 trang kia. Muon chan lac thi
+          phai lam bang nut "ve goc chuan", KHONG lam bang limitview. -->
+  <!-- 🔴 BO GIOI HAN PHAI Y HET canh5 ben trang Thuc te (fovmin 45 · fovmax 115
+       · maxpixelzoom 1.0 · limitview auto). Anh Tony chup anh mau TREN CHINH
+       canh do, nen giu nguyen bo so nay thi khung hinh moi ra dung nhu anh.
+       Doi mot trong bon so la khung hinh nhay - da thu va da sai 2 lan. -->
+  <!-- Goc XUAT PHAT lay y nguyen cua canh5 ben trang Thuc te.
+       Goc DICH (nadir) do JS trong index.html dat sau 700ms - xem BAY 50. -->
+  <view hlookat="5.0" vlookat="45.0" fov="105.0"
+        fovtype="HFOV" fovmin="30.0" fovmax="140.0"
+        limitview="auto" maxpixelzoom="1.0" />
+  <preview url="../pano/05-aquaria-song-vam-co/05-aquaria-song-vam-co.tiles/preview.jpg" />
+  <image type="CUBE" multires="true" tilesize="512">
+    <level tiledimagewidth="2624" tiledimageheight="2624"><cube url="../pano/05-aquaria-song-vam-co/05-aquaria-song-vam-co.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="1280" tiledimageheight="1280"><cube url="../pano/05-aquaria-song-vam-co/05-aquaria-song-vam-co.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="640"  tiledimageheight="640"><cube url="../pano/05-aquaria-song-vam-co/05-aquaria-song-vam-co.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" /></level>
+  </image>
+</scene>
+
+<!-- ==================================================================
+     CANH 2 - PK PARK VILLAGE   (them 16/09/2026, anh that gan cung ngay)
+
+     Anh Tony chot 16/09: gio hang co 2 phan khu ERA. Doi chieu
+     `tong-quan/phan-khu.json` thi dung 2 muc `era:true` la `aquaria`
+     va `park-village` - khop.
+
+     ANH NGUON: `02-NGUON/anh-360/waterpoint/1-tong-the/pk park village.jpg`
+       · md5 887eaa5a5dffab159fd16cdde6c2c50e · 3,58 MB · 8192x4096 (2:1)
+       · DJI FC3170, bay 05/09/2026 11:46, cao 360,2 m, GimbalYaw -63,3
+       · KHONG co GPS (cung lo anh bi nen lai nhu 06-rivera / 07-the-pearl)
+       🔴 Day chinh la `DJI_0482.jpg` cu, Anh Tony DOI TEN chieu 16/09.
+          Da doi chieu md5 voi ca 7 canh dang co: KHONG trung canh nao,
+          tuc la anh nay truoc gio CHUA DUNG O DAU.
+       ⚠️ Dung nham voi `1-tong-the/view park village.JPG` - file do
+          4000x3000 (4:3), la ANH PHANG, khong cat tile duoc. Chi dung
+          de doi chieu bang mat (da dung de xac nhan cum oval dung la PV).
+
+     TILE: `../pano/08-park-village/` - 295 file, DUNG Y so luong canh Aqua.
+     ✅ SO `tiledimagewidth` BEN DUOI LA SO THAT, chep tu `pano.xml` do chinh
+        droplet sinh ra (2624/1280/640) - KHONG con la so doan.
+        Moc `SCENE_PV_IMAGE_START/END` giu lai phong khi phai cat lai tile.
+     ================================================================== -->
+<scene name="pk_park_village" title="PK Park Village" onstart="">
+  <!-- Bo gioi han giu y het canh Aqua de hai canh con hanh xu giong nhau.
+       Goc xuat phat cung o v=45 (goc THUONG) - xem BAY 50 phia tren:
+       nadir phai do JS ben index.html xoay xuong sau, khong dat thang o day. -->
+  <view hlookat="5.0" vlookat="45.0" fov="105.0"
+        fovtype="HFOV" fovmin="30.0" fovmax="140.0"
+        limitview="auto" maxpixelzoom="1.0" />
+  <!-- SCENE_PV_IMAGE_START  (moc de script va lai khoi anh tu pano.xml droplet) -->
+  <preview url="../pano/08-park-village/08-park-village.tiles/preview.jpg" />
+  <image type="CUBE" multires="true" tilesize="512">
+    <level tiledimagewidth="2624" tiledimageheight="2624"><cube url="../pano/08-park-village/08-park-village.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="1280" tiledimageheight="1280"><cube url="../pano/08-park-village/08-park-village.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" /></level>
+    <level tiledimagewidth="640"  tiledimageheight="640"><cube url="../pano/08-park-village/08-park-village.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" /></level>
+  </image>
+  <!-- SCENE_PV_IMAGE_END -->
+</scene>
+
+<!-- ============================================================
+     CHO PHAN GIM LO - Anh Tony lam sau (chot 12/09).
+     Khuon mau co san: 08-KHUON-MAU\khung\tour360\era-lots-flycam.xml
+       (dat ma lo tren anh flycam, co GOI Y TU DONG + XUAT CODE)
+     Cham xong thi them mot dong <include url="lo.xml" /> vao day.
+     ============================================================ -->
+
+</krpano>
